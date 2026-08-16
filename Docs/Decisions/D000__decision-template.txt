@@ -1,0 +1,49 @@
+# Architecture Decision Record: D<NNN>__<tên-quyết-định>
+# Trạng thái: [ĐỀ XUẤT / ĐÃ CHỐT / THAY THẾ] | Ngày: YYYY-MM-DD
+
+# Mục lục
+1. Bối cảnh & Vấn đề (Context)
+2. Các phương án đã xem xét (Options)
+3. Quyết định lựa chọn (Decision)
+4. Hệ quả & Rủi ro kỹ thuật (Consequences)
+5. Kế hoạch triển khai & Verify
+
+---
+
+# 1. Bối cảnh & Vấn đề (Context)
+- Mô tả ngắn gọn vấn đề kỹ thuật hoặc bài toán kiến trúc cần giải quyết.
+- Các yêu cầu bắt buộc và giới hạn (về hiệu năng, bộ nhớ, trải nghiệm dev).
+
+---
+
+# 2. Các phương án đã xem xét (Options)
+
+### Phương án A: [Tên phương án]
+- **Ưu điểm:** ...
+- **Nhược điểm:** ...
+- **Lý do bị loại (hoặc được chọn):** ...
+
+### Phương án B: [Tên phương án]
+- **Ưu điểm:** ...
+- **Nhược điểm:** ...
+- **Lý do bị loại:** ...
+
+---
+
+# 3. Quyết định lựa chọn (Decision)
+- Chúng tôi quyết định chọn **Phương án [X]** vì [lý do cốt lõi].
+- Phạm vi áp dụng: [Chỉ định các phân hệ / thư mục áp dụng].
+
+---
+
+# 4. Hệ quả & Rủi ro kỹ thuật (Consequences)
+- **Mặt tích cực:** [Code sạch hơn, giảm GC Alloc, dễ unit test...].
+- **Mặt đánh đổi (Trade-offs):** [Phải viết thêm boilerplate, thời gian chuyển đổi ban đầu...].
+- **Lưu ý an toàn Unity:** [Không làm hỏng serialized data, giữ nguyên GUID file...].
+
+---
+
+# 5. Kế hoạch triển khai & Verify
+1. [Bước 1: Tạo base interface / abstract class].
+2. [Bước 2: Cài đặt logic cụ thể].
+3. [Bước 3: Chạy /convention-check và test thực tế trong Unity Editor].

@@ -1,0 +1,18 @@
+# Mục lục
+1. Câu lệnh prompt kiểm tra Unity
+2. Câu lệnh prompt tạo tính năng mới
+3. Câu lệnh prompt trước khi chuyển chat mới
+
+---
+
+# 1. Câu lệnh prompt kiểm tra Unity
+- "Kiểm tra Scene hiện tại và danh sách Hierarchy bằng Unity MCP."
+- "Đọc log Unity Console xem có error hoặc warning nào phát sinh không."
+- "Kiểm tra thuộc tính Component của GameObject [Tên Object] trong Unity Editor."
+
+# 2. Câu lệnh prompt tạo tính năng mới
+- "Hãy khám phá mã nguồn hiện tại và đề xuất phương án thêm vai trò mới [Tên Role]."
+- "Tối ưu lại logic trong [Tên Manager] theo đúng quy trình 4 bước explore -> propose -> confirm -> execute."
+
+# 3. Câu lệnh prompt trước khi chuyển chat mới
+- "Hãy tóm tắt ngắn gọn các việc vừa làm và ghi vào file Docs/Handoffs/session_handoff.txt để tôi chuyển sang phiên chat mới."

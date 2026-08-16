@@ -1,0 +1,43 @@
+# Quality Control Checklist: QC02 — Missing Script & Broken Reference Sweep
+# Mục đích: Rà soát phát hiện các component bị Missing Script hoặc gãy liên kết trong Scene và Prefabs.
+
+# Mục lục
+1. Nguyên Nhân Gây Missing Script & Broken References
+2. Quy Trình Rà Soát (Sweep Procedure)
+3. Hướng Dẫn Khắc Phục
+
+---
+
+# 1. Nguyên Nhân Gây Missing Script & Broken References
+- Đổi tên hoặc di chuyển file `.cs` mà không di chuyển kèm file `.cs.meta` (làm mất GUID).
+- Đổi tên class C# bên trong file nhưng không đổi tên file `.cs` khớp với tên class.
+- Sửa trực tiếp file `.prefab` / `.unity` bằng text editor làm hỏng cấu trúc FileID / GUID.
+- Xóa một component hoặc asset đang được kéo thả tham chiếu trong Inspector của Prefab khác.
+
+---
+
+# 2. Quy Trình Rà Soát (Sweep Procedure)
+
+### Bước 1: Quét Lỗi Console trong Unity Editor
+- Mở Unity Editor, mở cửa sổ Console.
+- Nhấn nút `Clear` rồi chuyển qua lại giữa các Scene chính (`Bootstrap`, `MainMenu`, `Gameplay`).
+- Tìm các cảnh báo màu vàng/đỏ dạng:
+  - `The referenced script on this Behaviour (Game Object '...') is missing!`
+  - `MissingReferenceException: The object of type '...' has been destroyed but you are still trying to access it.`
+
+### Bước 2: Kiểm Tra Prefabs trong Project Window
+- Quét các Prefab quan trọng trong thư mục `Assets/_Project/Prefabs/`.
+- Mở Prefab Mode: Kiểm tra từng GameObject con trong cây Hierarchy xem có component nào hiển thị `Missing (MonoBehaviour)` hay không.
+
+### Bước 3: Rà Soát File .meta Mồ Côi
+- Chạy kỹ năng `/system-cleanup` để tìm các file `.meta` mồ côi (file `.meta` tồn tại nhưng file asset gốc đã bị xóa).
+
+---
+
+# 3. Hướng Dẫn Khắc Phục
+1. **Nếu do rename file `.cs` mất GUID:**
+   - Dùng `git log` tìm lại GUID cũ trong file `.meta` trước khi đổi tên và phục hồi GUID đó.
+2. **Nếu do xóa script cũ không dùng:**
+   - Mở Prefab/Scene trong Unity Editor -> Chuột phải vào component Missing -> Chọn `Remove Component` -> Lưu lại Prefab/Scene.
+3. **Nếu do di chuyển file thủ công:**
+   - Lần sau luôn sử dụng lệnh `/move-file-unity` để di chuyển đồng thời cả cặp file và `.meta`.

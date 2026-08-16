@@ -1,0 +1,34 @@
+# Mục lục
+1. Giới thiệu tổng quan
+2. Gameplay Loop & Các giai đoạn
+3. Phe phái và Kỹ năng vai trò
+4. Kiến trúc Mạng & Giao tiếp
+
+---
+
+# 1. Giới thiệu tổng quan
+BoardGame3D là tựa game 3D Social Deduction (Ẩn vai / Ma sói) chơi theo nhóm online. Game xây dựng trên môi trường đồ họa 3D Low-Poly với đốm lửa trại trung tâm.
+
+# 2. Gameplay Loop & Các giai đoạn
+Trận đấu diễn ra theo các vòng lặp giai đoạn (GamePhase):
+- Lobby: Người chơi tập hợp trong sảnh.
+- RoleAssignment: Hệ thống phân chia vai trò ngẫu nhiên & bí mật.
+- DayDiscussion: Người chơi thảo luận công khai ban ngày (Chat / Vivox Voice).
+- Voting: Người chơi bỏ phiếu loại trừ nghi phạm.
+- NightAction: Đêm xuống, các vai trò đặc biệt thực hiện kỹ năng ẩn (Kill, Heal, Block, Spy).
+- LeaderSuccession: Bầu chọn / Kế thừa nhóm trưởng.
+- EndGame: Xác định phe chiến thắng (Good hoặc Bad).
+
+# 3. Phe phái và Kỹ năng vai trò
+- Phe Good (Phe Tốt): Tìm và loại bỏ toàn bộ thành viên phe Bad.
+- Phe Bad (Phe Xấu): Tiêu diệt hoặc áp đảo số lượng phe Good.
+- Các vai trò chính:
+  - Paranoiac: Người dân / Kẻ nghi ngờ.
+  - Healer: Bác sĩ (Cứu người ban đêm).
+  - Sentinel: Vệ sĩ (Bảo vệ / Ngăn chặn).
+  - Scout: Trinh sát (Soi vai trò).
+
+# 4. Kiến trúc Mạng & Giao tiếp
+- ServerRpc & ClientRpc quản lý đồng bộ trạng thái trận đấu qua Netcode for GameObjects.
+- CloudMatchmakingManager kết nối sảnh đấu online.
+- Vivox Voice Chat cung cấp kênh giao tiếp thoại theo vị trí và không gian 3D.

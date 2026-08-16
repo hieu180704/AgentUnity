@@ -1,0 +1,55 @@
+# Spec Phân Hệ — <Tên Phân Hệ>
+# Mô tả: Tài liệu đặc tả kỹ thuật sống (Living Spec). Router tra cứu: .agents/rules/knowledge-graph.md.
+
+# Mục lục
+1. Overview
+2. Map — Nhỏ → Lớn (2a Code · 2b Nguồn khác)
+3. Key Logic / Key Events (3a Logic · 3b Events)
+4. Runtime Gotchas & Pointers
+
+---
+
+# 1. Overview
+- **Trách nhiệm:** <Hệ thống này QUẢN LÝ / CHỊU TRÁCH NHIỆM những logic gì>.
+- **Ranh giới:** <Những gì KHÔNG thuộc hệ thống này mà thuộc hệ thống lân cận>.
+- **Đầu vào / Đầu ra:** <Ai gọi vào (Entry Point) / Kết quả trả về cho ai>.
+
+---
+
+# 2. Map — Nhỏ → Lớn
+Liệt kê các class/struct theo quan hệ sở hữu (Ownership / Composition):
+
+### 2a. Code Components
+- `<LeafStruct>` / `<Enum>`  : <Đơn vị dữ liệu nhỏ nhất; nằm trong Node nào>
+- `<XxxData>`                : <Data model; ai chứa nó>
+- `I<X>` / `A<X>`            : <Interface / Abstract base contract>
+- `<Manager>` (Orchestrator) : <Controller chính gom các service; vòng đời thế nào>
+- Entry Point chính          : <Hàm public chính ai gọi vào>
+
+### 2b. Nguồn khác (Asset / Config / Scene)
+- ScriptableObject Config    : "<TênConfig.asset>" — <Giữ data gì, ai đọc>
+- Prefab / UI                : "<TênPrefab.prefab>" — <Component nào gắn trên đó>
+- Save Node                  : `<SavedData>` — <Nhánh nào trong save data>
+- Event Bus                  : <Các sự kiện đăng ký hoặc phát ra>
+
+---
+
+# 3. Key Logic / Key Events
+
+### 3a. Key Logic
+- Khởi tạo (Boot / Init)    : <Thứ tự khởi tạo, phụ thuộc ai trước>
+- Luồng chính               : <A gọi B -> B xử lý C -> Cập nhật D>
+- Điều kiện rẽ nhánh        : <Các guard clause, trường hợp đặc biệt>
+- Teardown / Dọn dẹp        : <Xử lý khi Scene đổi hoặc Game Pause>
+
+### 3b. Key Events
+- `<TênEvent>` : <Ai RAISE> -> <Ai LẮNG NGHE> -> <Hành vi xảy ra>
+
+---
+
+# 4. Runtime Gotchas & Pointers
+- **Bẫy Runtime:** <Lưu ý tránh lỗi NRE, lỗi thứ tự Awake/Start, mất binding khi serialize>.
+- **Pointers tra cứu:**
+  - Recipe liên quan : `.agents/recipes/recipe-<name>.md`
+  - Rule an toàn     : `.agents/rules/unity-safety.md`
+# verify: <YYYY-MM-DD>

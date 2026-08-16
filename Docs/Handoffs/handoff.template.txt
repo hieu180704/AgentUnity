@@ -1,0 +1,53 @@
+# STATUS: 🟠 TODO | 🔵 IN-PROGRESS | 🟢 READY FOR REVIEW | ✅ DONE
+# TASK: <Tên công việc / Tính năng đang làm>
+# ROLE: <1-2 câu tóm tắt nội dung bàn giao để người khác đọc nhanh hiểu ngay>
+
+# Mục lục
+1. Mục tiêu & Hiện trạng
+2. Các công việc đã hoàn thành (DONE)
+3. Các công việc còn lại (TODO)
+4. Ràng buộc kỹ thuật & Runtime Gotchas
+5. Tài liệu & Code liên quan (Cross-Ref)
+6. Next-Session Prompt (Dành cho phiên chat tiếp theo)
+
+---
+
+# 1. Mục tiêu & Hiện trạng
+- **Mục tiêu:** <Một câu nêu rõ khi hoàn thành tính năng này sẽ đạt được gì>.
+- **Hiện trạng:** <Đang ở bước nào trong quy trình 4 pha, ước tính % hoàn thành>.
+
+---
+
+# 2. Các công việc đã hoàn thành (DONE)
+- [x] <Việc 1 đã xong + file/commit liên quan>.
+- [x] <Việc 2 đã xong>.
+
+---
+
+# 3. Các công việc còn lại (TODO)
+- [ ] <Việc cụ thể session sau cần làm ngay>.
+- [ ] <Việc tiếp theo>.
+
+---
+
+# 4. Ràng buộc kỹ thuật & Runtime Gotchas
+- **An toàn Unity:** KHÔNG sửa `.prefab`, `.unity`, `.asset`, `.meta` qua text tool.
+- **Bẫy runtime:** <Lưu ý các bẫy ngầm, lỗi thiếu null check, hoặc thứ tự Init>.
+
+---
+
+# 5. Tài liệu & Code liên quan (Cross-Ref)
+- Spec phân hệ : `Docs/SourceOfTruth/<Domain>/spec.txt`
+- Code chính    : `Assets/_Project/Scripts/<Domain>/`
+- Recipe áp dụng: `.agents/recipes/recipe-<name>.md`
+
+---
+
+# 6. Next-Session Prompt (Copy nguyên khối này sang Chat mới)
+```text
+read:   Docs/Handoffs/<tên-file-handoff>.txt
+state:  Đã hoàn thành các mục trong §2, chuẩn bị làm tiếp §3.
+action: Tiếp tục thực hiện các công việc còn lại trong §3 theo quy trình explore -> propose -> confirm -> execute.
+gate:   Chạy /convention-check sau khi viết code và verify trong Unity Editor.
+```
+# Last updated: <YYYY-MM-DD>

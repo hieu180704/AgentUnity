@@ -1,0 +1,42 @@
+# Quality Control Checklist: QC01 — Code Review & Clean Architecture
+# Mục đích: Rà soát toàn diện mã nguồn C# Unity trước khi merge / commit / đóng Milestone.
+
+# Mục lục
+1. Tiêu Chuẩn Kiến Trúc & Decoupling
+2. Tiêu Chuẩn Hiệu Năng & Tránh Rác GC
+3. Tiêu Chuẩn Serialization & Unity Inspector
+4. Tiêu Chuẩn An Toàn Lifecycle & Memory Leaks
+
+---
+
+# 1. Tiêu Chuẩn Kiến Trúc & Decoupling
+- [ ] Mọi class/struct/enum đều nằm trong một `namespace` phân hệ rõ ràng.
+- [ ] Không có "God Class" (file dài > 400 dòng vừa xử lý Input, Physics, UI, Sound).
+- [ ] Giao tiếp giữa các hệ thống độc lập sử dụng Event Bus hoặc C# Event, không tham chiếu chéo spaghetti.
+- [ ] Interface có tiền tố `I...`, Abstract class có tiền tố `A...` hoặc hậu tố `Base`.
+
+---
+
+# 2. Tiêu Chuẩn Hiệu Năng & Tránh Rác GC
+- [ ] Không gọi `GameObject.Find`, `FindObjectOfType`, `GetComponent` trong `Update`/`FixedUpdate`.
+- [ ] Không gọi `Camera.main` liên tục trong vòng lặp mỗi frame (đã cache trong `Awake`).
+- [ ] Không có hàm Unity lifecycle rỗng (`void Update() {}`, `void Start() {}`).
+- [ ] Các đối tượng sinh/hủy liên tục (đạn, VFX, floating text) đã được đưa vào Object Pool (`recipe-pool.md`).
+- [ ] Không ghép chuỗi string (`+`) trong Update gây phân mảnh GC.
+- [ ] Sử dụng `Animator.StringToHash` cho các tham số Animator (`recipe-constants.md`).
+
+---
+
+# 3. Tiêu Chuẩn Serialization & Unity Inspector
+- [ ] Không dùng public field trần để expose ra Inspector (luôn dùng `[SerializeField] private`).
+- [ ] Không có `[SerializeField] public` thừa thãi.
+- [ ] Tên biến private dạng `camelCase` hoặc `_camelCase` (không dùng prefix lỗi thời `m_`).
+- [ ] Các field serialize được gom nhóm bằng `[Header]` và có `[Tooltip]` giải thích rõ ràng.
+
+---
+
+# 4. Tiêu Chuẩn An Toàn Lifecycle & Memory Leaks
+- [ ] Mọi sự kiện đăng ký trong `OnEnable` đều có cặp hủy đăng ký trong `OnDisable` (hoặc `Awake` / `OnDestroy`).
+- [ ] Mọi Tween animation (DOTween) đều có `DOKill()` trong `OnDisable` để tránh lỗi NRE khi object bị ẩn.
+- [ ] Dữ liệu Save Data có trường `schemaVersion` và hàm `MigrateIfNeeded()` (`recipe-save-data.md`).
+- [ ] UI Panel/Popup quản lý ẩn hiện qua `CanvasGroup` và có set `blocksRaycasts = false` khi ẩn.

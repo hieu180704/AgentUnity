@@ -1,0 +1,59 @@
+# Unity .gitignore — Chuẩn hóa cho Unity 6 & các bản LTS
+
+# 1. Các thư mục tự sinh do Unity Engine quản lý (Không track)
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# 2. Asset Store Packages & Cache
+/[Aa]ssets/[Aa]ssetStoreTools*
+
+# 3. File sinh bởi Visual Studio / Visual Studio Code / Rider
+.vs/
+.idea/
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# 4. Unity generated file & Crash dumps
+sysinfo.txt
+*.stackdump
+CrashReport*
+
+# 5. Addressables cache & build artifacts
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# 6. Hệ điều hành tự sinh
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+[Tt]humbs.db
+Desktop.ini
+
+# 7. File tạm của AI Agent / Scratch Scripts
+Docs/99_scratch/*
+.agents/scratch/*
+!Docs/99_scratch/.keep
+!.agents/scratch/.keep

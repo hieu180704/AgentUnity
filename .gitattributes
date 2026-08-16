@@ -1,0 +1,84 @@
+# Unity .gitattributes — Cấu hình Git LFS (Large File Storage) & Diff Rules
+
+# 1. Tự động nhận diện định dạng dòng (End of Line)
+* text=auto
+
+# 2. Định dạng Text & Mã nguồn C#
+*.cs diff=csharp text
+*.cginc text
+*.shader text
+*.hlsl text
+*.glsl text
+*.compute text
+*.json text
+*.xml text
+*.txt text
+*.md text
+*.asmdef text
+*.asmref text
+*.editorconfig text
+
+# 3. Unity YAML Serialized Files (Giữ Text để Merge và Diff được)
+*.unity text
+*.prefab text
+*.asset text
+*.mat text
+*.meta text
+*.controller text
+*.anim text
+*.overrideController text
+*.physicMaterial text
+*.physicsMaterial2D text
+*.guiskin text
+*.fontsettings text
+*.mask text
+*.brush text
+
+# 4. Git LFS: Định dạng 3D Models & Animations
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.max filter=lfs diff=lfs merge=lfs -text
+*.dae filter=lfs diff=lfs merge=lfs -text
+*.3ds filter=lfs diff=lfs merge=lfs -text
+*.dxf filter=lfs diff=lfs merge=lfs -text
+*.c4d filter=lfs diff=lfs merge=lfs -text
+
+# 5. Git LFS: Định dạng Hình ảnh & Textures nặng
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.tga filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.tiff filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.hdr filter=lfs diff=lfs merge=lfs -text
+*.cubemap filter=lfs diff=lfs merge=lfs -text
+
+# 6. Git LFS: Định dạng Âm thanh (Audio)
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.ogg filter=lfs diff=lfs merge=lfs -text
+*.aif filter=lfs diff=lfs merge=lfs -text
+*.aiff filter=lfs diff=lfs merge=lfs -text
+*.flac filter=lfs diff=lfs merge=lfs -text
+
+# 7. Git LFS: Định dạng Video
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.mov filter=lfs diff=lfs merge=lfs -text
+*.avi filter=lfs diff=lfs merge=lfs -text
+*.webm filter=lfs diff=lfs merge=lfs -text
+
+# 8. Git LFS: Fonts & Binary Archives
+*.ttf filter=lfs diff=lfs merge=lfs -text
+*.otf filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.7z filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+*.unitypackage filter=lfs diff=lfs merge=lfs -text
+*.dll filter=lfs diff=lfs merge=lfs -text
+*.so filter=lfs diff=lfs merge=lfs -text
+*.dylib filter=lfs diff=lfs merge=lfs -text
+*.aar filter=lfs diff=lfs merge=lfs -text
+*.jar filter=lfs diff=lfs merge=lfs -text

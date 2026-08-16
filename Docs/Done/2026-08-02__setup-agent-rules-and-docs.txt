@@ -1,0 +1,14 @@
+# Mục lục
+1. Summary & Verification
+2. Chi tiết công việc đã hoàn thành
+
+---
+
+# 1. Summary & Verification
+SUMMARY: Setup Global & Project AGENTS.md, Unity MCP verification, Docs structure, and newsession Skill · play-test PASS
+
+# 2. Chi tiết công việc đã hoàn thành
+- Đã kết nối và kiểm tra thành công Unity MCP Server với Unity Editor đang mở (`MenuScene.unity`).
+- Cấu hình file Global Rules `C:\Users\dinht\.gemini\config\AGENTS.md` (bao gồm User Profile, Rules, Status Line).
+- Thiết lập bộ cấu trúc thư mục `Docs/` (`SourceOfTruth`, `Decisions`, `Handoffs`, `QC`, `prompts`, `Done`).
+- Tạo và đẩy thành công Skill `newsession` (Commit SHA: c6aa53b).

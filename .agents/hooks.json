@@ -1,0 +1,72 @@
+{
+  "asset-write-guard": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"./hooks/asset-write-guard.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "read-guard": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "view_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"./hooks/read-guard.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "unity-safety-inject": {
+    "enabled": true,
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "node \"./hooks/unity-safety-inject.js\"",
+        "timeout": 10
+      }
+    ]
+  },
+  "convention-lint-guard": {
+    "enabled": true,
+    "PostToolUse": [
+      {
+        "matcher": "write_to_file|replace_file_content|multi_replace_file_content",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"./hooks/convention-lint-guard.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "closeout-trigger": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"./hooks/closeout-trigger.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
