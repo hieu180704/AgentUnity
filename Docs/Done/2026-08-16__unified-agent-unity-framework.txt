@@ -1,0 +1,16 @@
+# Task: Hợp Nhất & Đổi Tên Thành Bộ Khung AgentUnity (Universal Dual-Agent)
+# Ngày: 2026-08-16
+# Mục tiêu: Gom toàn bộ sức mạnh của Gemini (Antigravity) và Claude Code vào 1 Repository duy nhất mang tên AgentUnity.
+
+# Các công việc đã hoàn thành:
+1. Hợp nhất cấu hình .agents/ (Gemini) và .claude/ (Claude) vào cùng 1 repo.
+2. Tích hợp công cụ đồng bộ 2 chiều scripts/sync-agents.js (Zero-drift giữa các Rules & Recipes).
+3. Thiết lập cơ chế Cross-Agent Handoff qua Docs/Handoffs/handoff.txt.
+4. Cập nhật Universal 1-Command Installers:
+   - install.ps1 (PowerShell cho Windows)
+   - install.sh (Bash cho macOS & Linux)
+5. Chuẩn hóa toàn bộ tài liệu README.md, AGENTS.md, CLAUDE.md sang tên gọi chính thức: AgentUnity.
+6. Thiết lập git remote sẵn sàng trỏ về https://github.com/hieu180704/AgentUnity.git.
+
+# Kết quả:
+- Hệ thống AgentUnity trở thành bộ khung duy nhất, toàn diện nhất để pair-programming trên Unity Engine với bất kỳ AI Engine nào.

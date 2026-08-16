@@ -1,4 +1,4 @@
-# GeminiUnity — Unity AI Agent Framework & Starter Kit
+# AgentUnity — Universal Unity AI Agent Framework & Starter Kit
 
 # Mục lục
 1. [Tổng quan bộ khung](#1-tổng-quan-bộ-khung)
@@ -13,7 +13,7 @@
 ---
 
 # 1. Tổng quan bộ khung
-- **Tên dự án:** GeminiUnity
+- **Tên dự án:** AgentUnity
 - **Bản chất:** Bộ khung cấu hình, quy tắc, kịch bản tự động hoá và mẫu kiến trúc chuẩn hoá dành cho AI Agent (Antigravity/Gemini) khi lập trình cặp (Pair-Programming) trên các dự án Unity.
 - **Mục tiêu:**
   - Đảm bảo an toàn tuyệt đối cho Asset & Serialized Data của Unity.

@@ -1,18 +1,18 @@
 # ==============================================================================
-# GeminiUnity — 1-Command Universal Installer for Windows (PowerShell)
+# AgentUnity — 1-Command Universal Installer for Windows (PowerShell)
 # Cách dùng: Chạy lệnh sau tại thư mục gốc của dự án Unity:
-# irm https://raw.githubusercontent.com/hieu180704/GeminiUnity/main/install.ps1 | iex
+# irm https://raw.githubusercontent.com/hieu180704/AgentUnity/main/install.ps1 | iex
 # ==============================================================================
 
 $ErrorActionPreference = "Stop"
 
 Write-Host "============================================================" -ForegroundColor Cyan
-Write-Host "  🚀 Cài đặt Bộ khung GeminiUnity (Dual-Agent Ready) cho Unity" -ForegroundColor Cyan
+Write-Host "  🚀 Cài đặt Bộ khung AgentUnity (Universal Dual-Agent) cho Unity" -ForegroundColor Cyan
 Write-Host "============================================================" -ForegroundColor Cyan
 
-$tempZipUrl = "https://github.com/hieu180704/GeminiUnity/archive/refs/heads/main.zip"
-$tempDir = Join-Path $env:TEMP ("GeminiUnity_" + [System.Guid]::NewGuid().ToString())
-$tempZip = Join-Path $env:TEMP "GeminiUnity.zip"
+$tempZipUrl = "https://github.com/hieu180704/AgentUnity/archive/refs/heads/main.zip"
+$tempDir = Join-Path $env:TEMP ("AgentUnity_" + [System.Guid]::NewGuid().ToString())
+$tempZip = Join-Path $env:TEMP "AgentUnity.zip"
 
 try {
     # 1. Tải bộ khung từ GitHub
@@ -22,7 +22,7 @@ try {
     # 2. Giải nén vào thư mục tạm
     Write-Host "[2/4] 📂 Đang giải nén tài nguyên..." -ForegroundColor Yellow
     Expand-Archive -Path $tempZip -DestinationPath $tempDir -Force
-    $sourceDir = Join-Path $tempDir "GeminiUnity-main"
+    $sourceDir = Join-Path $tempDir "AgentUnity-main"
 
     # 3. Sao chép các thư mục và file cốt lõi vào project hiện tại
     Write-Host "[3/4] 📋 Đang sao chép các thành phần vào dự án..." -ForegroundColor Yellow
@@ -90,7 +90,7 @@ try {
     Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue
 
     Write-Host "`n============================================================" -ForegroundColor Cyan
-    Write-Host "  ✅ Cài Đặt Hoàn Tất! Dự Án Đã Sẵn Sàng Cho Cả 2 AI Agent!" -ForegroundColor Green
+    Write-Host "  ✅ Cài Đặt Hoàn Tất! AgentUnity Đã Sẵn Sàng!" -ForegroundColor Green
     Write-Host "============================================================" -ForegroundColor Cyan
     Write-Host "👉 BƯỚC TIẾP THEO:" -ForegroundColor Yellow
     Write-Host "1. Dùng Gemini: Mở Antigravity IDE -> Chat để setup dự án." -ForegroundColor White

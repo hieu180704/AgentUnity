@@ -1,4 +1,4 @@
-# ClaudeUnity — Unity AI Agent Framework & Starter Kit for Claude Code
+# AgentUnity — Universal Unity AI Agent Framework & Starter Kit for Claude Code
 
 # Mục lục
 1. [Tổng quan bộ khung](#1-tổng-quan-bộ-khung)
@@ -15,7 +15,7 @@
 ---
 
 # 1. Tổng quan bộ khung
-- **Tên dự án:** ClaudeUnity
+- **Tên dự án:** AgentUnity
 - **Bản chất:** Bộ khung cấu hình, quy tắc an toàn, automation scripts, subagents và mẫu kiến trúc chuẩn hóa dành riêng cho **Claude Code** (Anthropic Claude AI) khi lập trình cặp (Pair-Programming) trên các dự án Unity Engine.
 - **Mục tiêu cốt lõi:**
   - **Bảo vệ tuyệt đối Asset & Serialized YAML:** Chặn việc sửa hỏng GUID/FileID của `.prefab`, `.unity`, `.asset`, `.meta`.

@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# GeminiUnity — 1-Command Universal Installer for macOS / Linux (Bash)
+# AgentUnity — 1-Command Universal Installer for macOS / Linux (Bash)
 # Cách dùng: Chạy lệnh sau tại thư mục gốc của dự án Unity:
-# curl -fsSL https://raw.githubusercontent.com/hieu180704/GeminiUnity/main/install.sh | bash
+# curl -fsSL https://raw.githubusercontent.com/hieu180704/AgentUnity/main/install.sh | bash
 # ==============================================================================
 
 set -e
 
 echo "============================================================"
-echo "  🚀 Cài đặt Bộ khung GeminiUnity (Dual-Agent Ready) cho Unity"
+echo "  🚀 Cài đặt Bộ khung AgentUnity (Universal Dual-Agent) cho Unity"
 echo "============================================================"
 
-TEMP_ZIP="/tmp/GeminiUnity.zip"
-TEMP_DIR="/tmp/GeminiUnity_$(date +%s)"
-ZIP_URL="https://github.com/hieu180704/GeminiUnity/archive/refs/heads/main.zip"
+TEMP_ZIP="/tmp/AgentUnity.zip"
+TEMP_DIR="/tmp/AgentUnity_$(date +%s)"
+ZIP_URL="https://github.com/hieu180704/AgentUnity/archive/refs/heads/main.zip"
 
 echo -e "\n[1/4] 📦 Đang tải bộ khung từ GitHub..."
 curl -fsSL "$ZIP_URL" -o "$TEMP_ZIP"
@@ -21,7 +21,7 @@ curl -fsSL "$ZIP_URL" -o "$TEMP_ZIP"
 echo "[2/4] 📂 Đang giải nén tài nguyên..."
 mkdir -p "$TEMP_DIR"
 unzip -q "$TEMP_ZIP" -d "$TEMP_DIR"
-SOURCE_DIR="$TEMP_DIR/GeminiUnity-main"
+SOURCE_DIR="$TEMP_DIR/AgentUnity-main"
 
 echo "[3/4] 📋 Đang sao chép các thành phần vào dự án..."
 
@@ -72,7 +72,7 @@ fi
 rm -rf "$TEMP_ZIP" "$TEMP_DIR"
 
 echo "============================================================"
-echo "  ✅ Cài Đặt Hoàn Tất! Dự Án Đã Sẵn Sàng Cho Cả 2 AI Agent!"
+echo "  ✅ Cài Đặt Hoàn Tất! AgentUnity Đã Sẵn Sàng!"
 echo "============================================================"
 echo "👉 BƯỚC TIẾP THEO:"
 echo "1. Dùng Gemini: Mở Antigravity IDE -> Chat để setup dự án."

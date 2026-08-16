@@ -1,4 +1,4 @@
-# GeminiUnity — Universal AI Agent Framework for Unity (Gemini & Claude Code)
+# AgentUnity — Universal AI Agent Framework for Unity (Gemini & Claude Code)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Engine-Unity%206%20%7C%202022%20LTS-black?style=for-the-badge&logo=unity" />
@@ -41,7 +41,7 @@ Bộ khung cấu hình, quy tắc an toàn, automation scripts, subagents và m�
 # 2. Bản Đồ Cấu Trúc Hệ Thống
 
 ```text
-GeminiUnity/
+AgentUnity/
 ├── install.ps1                    # Script cài đặt tự động 1 lệnh cho Windows (PowerShell)
 ├── install.sh                     # Script cài đặt tự động 1 lệnh cho macOS & Linux (Bash)
 ├── .editorconfig                  # Cưỡng chế quy chuẩn định dạng C# Unity cấp IDE & Root
@@ -129,12 +129,12 @@ Mở Terminal tại **thư mục gốc của bất kỳ dự án Unity nào** v�
 
 ### Cho Windows (PowerShell):
 ```powershell
-irm https://raw.githubusercontent.com/hieu180704/GeminiUnity/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/hieu180704/AgentUnity/main/install.ps1 | iex
 ```
 
 ### Cho macOS / Linux (Bash):
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hieu180704/GeminiUnity/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/hieu180704/AgentUnity/main/install.sh | bash
 ```
 
 ---
