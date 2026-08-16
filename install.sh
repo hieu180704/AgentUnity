@@ -8,7 +8,7 @@
 set -e
 
 echo "============================================================"
-echo "  🚀 Cài đặt Bộ khung AgentUnity (Universal Dual-Agent) cho Unity"
+echo "  🚀 Cài đặt Bộ khung AgentUnity (Universal Tri-Agent) cho Unity"
 echo "============================================================"
 
 TEMP_ZIP="/tmp/AgentUnity.zip"
@@ -35,14 +35,29 @@ if [ -d "$SOURCE_DIR/.claude" ]; then
     echo "  + Đã cài đặt .claude/ (Claude Code: Settings, Rules, Commands, Agents)"
 fi
 
+if [ -d "$SOURCE_DIR/.openai" ]; then
+    cp -R "$SOURCE_DIR/.openai" .
+    echo "  + Đã cài đặt .openai/ (ChatGPT / OpenAI: Rules, Recipes, Prompts)"
+fi
+
+if [ -d "$SOURCE_DIR/.github" ]; then
+    cp -R "$SOURCE_DIR/.github" .
+    echo "  + Đã cài đặt .github/ (GitHub Copilot Instructions)"
+fi
+
 if [ -d "$SOURCE_DIR/scripts" ]; then
     cp -R "$SOURCE_DIR/scripts" .
-    echo "  + Đã cài đặt scripts/ (Công cụ sync-agents.js 2 chiều)"
+    echo "  + Đã cài đặt scripts/ (Công cụ sync-agents.js 3 chiều)"
 fi
 
 if [ -d "$SOURCE_DIR/Docs" ]; then
     cp -R "$SOURCE_DIR/Docs" .
     echo "  + Đã cài đặt Docs/ (Shared Living Docs: SourceOfTruth, Decisions, Handoffs, QC, Done)"
+fi
+
+if [ -f "$SOURCE_DIR/.cursorrules" ]; then
+    cp "$SOURCE_DIR/.cursorrules" .
+    echo "  + Đã cài đặt .cursorrules (Cursor IDE Rules)"
 fi
 
 cp "$SOURCE_DIR/.editorconfig" .
@@ -58,7 +73,7 @@ else
     echo "  + Đã phát hiện .gitignore sẵn có (Giữ nguyên file hiện tại)"
 fi
 
-echo "[4/4] ⚙️ Đang kích hoạt AGENTS.md & CLAUDE.md cho dự án..."
+echo "[4/4] ⚙️ Đang kích hoạt AGENTS.md, CLAUDE.md & CHATGPT.md cho dự án..."
 if [ -f "$SOURCE_DIR/.agents/AGENTS_TEMPLATE.md" ]; then
     cp "$SOURCE_DIR/.agents/AGENTS_TEMPLATE.md" ".agents/AGENTS.md"
     echo "  + Đã tạo .agents/AGENTS.md sẵn sàng cho Gemini Onboarding"
@@ -69,6 +84,11 @@ if [ -f "$SOURCE_DIR/CLAUDE_TEMPLATE.md" ]; then
     echo "  + Đã tạo CLAUDE.md sẵn sàng cho Claude Code Onboarding"
 fi
 
+if [ -f "$SOURCE_DIR/CHATGPT_TEMPLATE.md" ]; then
+    cp "$SOURCE_DIR/CHATGPT_TEMPLATE.md" "./CHATGPT.md"
+    echo "  + Đã tạo CHATGPT.md sẵn sàng cho ChatGPT / OpenAI Onboarding"
+fi
+
 rm -rf "$TEMP_ZIP" "$TEMP_DIR"
 
 echo "============================================================"
@@ -77,5 +97,7 @@ echo "============================================================"
 echo "👉 BƯỚC TIẾP THEO:"
 echo "1. Dùng Gemini: Mở Antigravity IDE -> Chat để setup dự án."
 echo "2. Dùng Claude: Mở Terminal gõ 'claude' -> Chat để setup dự án."
-echo "3. Đồng bộ 2 bên khi sửa Rules/Recipes: node scripts/sync-agents.js"
+echo "3. Dùng ChatGPT / OpenAI: Nạp CHATGPT.md vào ChatGPT Project / System Prompt."
+echo "4. Dùng Cursor / Copilot: Tự động nhận .cursorrules & .github/copilot-instructions.md."
+echo "5. Đồng bộ 3 bên khi sửa Rules/Recipes: node scripts/sync-agents.js"
 echo ""

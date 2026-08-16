@@ -1,20 +1,20 @@
-# AgentUnity — Universal AI Agent Framework for Unity (Gemini & Claude Code)
+# AgentUnity — Universal AI Agent Framework for Unity (Gemini, Claude & ChatGPT)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Engine-Unity%206%20%7C%202022%20LTS-black?style=for-the-badge&logo=unity" />
-  <img src="https://img.shields.io/badge/AI%20Agents-Gemini%20Antigravity%20%7C%20Claude%20Code-purple?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/AI%20Agents-Gemini%20%7C%20Claude%20%7C%20ChatGPT%20%7C%20Copilot-purple?style=for-the-badge" />
   <img src="https://img.shields.io/badge/MCP-Unity%20Server%20Ready-brightgreen?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Architecture-Clean%20%26%20Zero--GC-blue?style=for-the-badge" />
 </p>
 
-Bộ khung cấu hình, quy tắc an toàn, automation scripts, subagents và mẫu kiến trúc chuẩn hoá dành cho **Đa AI Agent (Google Antigravity / Gemini & Anthropic Claude Code)** khi lập trình cặp (Pair-Programming) trên các dự án Unity Engine.
+Bộ khung cấu hình, quy tắc an toàn, automation scripts, subagents và mẫu kiến trúc chuẩn hoá dành cho **Đa AI Agent (Google Antigravity / Gemini, Anthropic Claude Code & OpenAI / ChatGPT / Copilot / Cursor)** khi lập trình cặp (Pair-Programming) trên các dự án Unity Engine.
 
 ---
 
 # Mục lục
 1. [Tổng Quan Tính Năng](#1-tổng-quan-tính-năng)
 2. [Bản Đồ Cấu Trúc Hệ Thống](#2-bản-đồ-cấu-trúc-hệ-thống)
-3. [Cơ Chế Dual-Agent & Cross-Agent Handoff](#3-cơ-chế-dual-agent--cross-agent-handoff)
+3. [Cơ Chế Tri-Agent & Cross-Agent Handoff](#3-cơ-chế-tri-agent--cross-agent-handoff)
 4. [Hệ Thống Trụ Cột (Core Modules)](#4-hệ-thống-trụ-cột-core-modules)
    - [4.1. Lifecycle Hooks & Safety Guards](#41-lifecycle-hooks--safety-guards)
    - [4.2. Architecture Recipes (11 Mẫu Code C#)](#42-architecture-recipes-11-mẫu-code-c)
@@ -30,8 +30,8 @@ Bộ khung cấu hình, quy tắc an toàn, automation scripts, subagents và m�
 # 1. Tổng Quan Tính Năng
 - 🛡️ **Bảo Vệ Toàn Vẹn Asset Unity:** Chặn cứng AI sửa trực tiếp `.prefab`, `.unity`, `.asset`, `.meta` qua text tool, ngăn ngừa triệt để lỗi mất GUID / broken references.
 - ⚡ **Zero-GC & High Performance:** Kiểm soát triệt để cấp phát bộ nhớ trong GameLoop (`Update`, `LateUpdate`, Coroutine, Events).
-- 🔄 **Universal Dual-Agent Ready:** Hỗ trợ song song cả **Antigravity (Gemini)** và **Claude Code (Claude)** trên cùng một dự án Unity.
-- 🤝 **Bàn Giao Chéo (Cross-Agent Handoff):** Đóng session ở Gemini -> Mở Claude Code tiếp tục ngay lập tức mà không mất ngữ cảnh.
+- 🔄 **Universal Tri-Agent Ready:** Hỗ trợ song song cả **Antigravity (Gemini)**, **Claude Code (Claude)**, và **ChatGPT / OpenAI / GitHub Copilot / Cursor** trên cùng một dự án Unity.
+- 🤝 **Bàn Giao Chéo (Cross-Agent Handoff):** Đóng session ở Gemini -> Mở Claude Code hoặc ChatGPT tiếp tục ngay lập tức mà không mất ngữ cảnh.
 - ⚡ **Tối Ưu Vòng Lặp Phản Hồi:** Hỗ trợ kiến trúc Assembly Definitions (`.asmdef`) đưa thời gian compile C# xuống **< 1 giây**.
 - 🔗 **Tích Hợp Sâu Unity MCP Server:** Hướng dẫn và bảo vệ 8 bẫy ngầm khi AI điều khiển Unity Editor trực tiếp qua MCP.
 - 🚀 **1-Command Quick Setup & Auto Onboarding:** Cài đặt toàn bộ bộ khung chỉ với 1 câu lệnh, AI tự động hỏi và thiết lập cấu hình dự án.
@@ -47,9 +47,13 @@ AgentUnity/
 ├── .editorconfig                  # Cưỡng chế quy chuẩn định dạng C# Unity cấp IDE & Root
 ├── .gitattributes                 # Cấu hình Git LFS cho Binary Assets & Text Diff cho C#/YAML
 ├── .gitignore                     # Chặn file rác Library/, Temp/, Logs/ của Unity 6 & LTS
+├── CHATGPT.md & CHATGPT_TEMPLATE  # Entry points tối ưu cho ChatGPT & OpenAI
 ├── CLAUDE.md & CLAUDE_TEMPLATE.md # Entry points tối ưu cho Claude Code
+├── .cursorrules                   # Cấu hình quy chuẩn cho Cursor IDE
+├── .github/
+│   └── copilot-instructions.md    # Hướng dẫn quy chuẩn cho GitHub Copilot
 ├── scripts/
-│   └── sync-agents.js             # Công cụ tự động đồng bộ 2 chiều Rules & Recipes
+│   └── sync-agents.js             # Công cụ tự động đồng bộ 3 chiều Rules & Recipes
 ├── .agents/                       # Cấu hình tối ưu cho Antigravity (Gemini)
 │   ├── AGENTS.md                  # Tài liệu định hướng tổng quan cho Framework
 │   ├── AGENTS_TEMPLATE.md         # Template mẫu sạch để copy sang dự án Game cụ thể
@@ -63,6 +67,8 @@ AgentUnity/
 │   ├── rules/ & recipes/ & hooks/ # Rules & Templates đồng bộ
 │   ├── commands/                  # 10 Slash Commands (.md)
 │   └── agents/                    # 4 Subagents chuyên trách
+├── .openai/                       # Cấu hình tối ưu cho ChatGPT / OpenAI
+│   └── rules/ & recipes/          # Rules & Templates đồng bộ
 └── Docs/                          # 🌟 SHARED SOURCE OF TRUTH (100% Chung)
     ├── SourceOfTruth/             # Spec kỹ thuật phân hệ 4 phần chuẩn (_TEMPLATE.txt)
     ├── Decisions/                 # Nhật ký quyết định kiến trúc ADR (D000__decision-template.txt)
@@ -74,12 +80,14 @@ AgentUnity/
 
 ---
 
-# 3. Cơ Chế Dual-Agent & Cross-Agent Handoff
+# 3. Cơ Chế Tri-Agent & Cross-Agent Handoff
 
-Dự án cho phép bạn linh hoạt chuyển đổi giữa **Gemini** và **Claude Code**:
+Dự án cho phép bạn linh hoạt chuyển đổi giữa **Gemini**, **Claude Code**, và **ChatGPT / OpenAI**:
 1. **Làm việc với Gemini (Antigravity IDE):** Khi kết thúc phiên làm việc, gõ `/newsession` -> Gemini tự động ghi tóm tắt vào `Docs/Handoffs/handoff.txt` và lưu fragment tại `Docs/Done/`.
-2. **Tiếp tục với Claude Code:** Mở Terminal gõ `claude` -> Ra lệnh: *"Đọc `Docs/Handoffs/handoff.txt` và tiếp tục task tiếp theo"*. Claude nạp ngay bối cảnh mà không cần giải thích lại.
-3. **Đồng bộ tự động:** Khi bạn cập nhật bất kỳ Rule hoặc Recipe nào ở một bên, chỉ cần chạy:
+2. **Tiếp tục với Claude Code hoặc ChatGPT:**
+   - **Claude:** Mở Terminal gõ `claude` -> Ra lệnh: *"Đọc `Docs/Handoffs/handoff.txt` và tiếp tục task tiếp theo"*.
+   - **ChatGPT:** Đính kèm `Docs/Handoffs/handoff.txt` vào prompt hoặc ChatGPT Project.
+3. **Đồng bộ tự động 3 chiều:** Khi bạn cập nhật bất kỳ Rule hoặc Recipe nào ở bất kỳ Agent nào, chỉ cần chạy:
    ```bash
    node scripts/sync-agents.js
    ```
@@ -141,9 +149,9 @@ curl -fsSL https://raw.githubusercontent.com/hieu180704/AgentUnity/main/install.
 
 # 6. Quy Trình Tự Động Onboarding Của AI
 Sau khi chạy lệnh cài đặt:
-1. Mở dự án trong **Antigravity IDE** (Gemini) hoặc **Claude Code**.
+1. Mở dự án trong **Antigravity IDE** (Gemini), **Claude Code**, hoặc nạp `CHATGPT.md` vào **ChatGPT**.
 2. Khi bạn bắt đầu trò chuyện với AI (hoặc gõ `"Bắt đầu"`):
-   - AI đọc `AGENTS.md` / `CLAUDE.md`, nhận diện cờ Onboarding và **tự động chủ động hỏi bạn 4 câu hỏi**:
+   - AI đọc `AGENTS.md` / `CLAUDE.md` / `CHATGPT.md`, nhận diện cờ Onboarding và **tự động chủ động hỏi bạn 4 câu hỏi**:
      - *Tên dự án game?*
      - *Thể loại & Core Gameplay loop?*
      - *Unity Version & Render Pipeline (URP/Built-in/HDRP)?*

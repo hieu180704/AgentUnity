@@ -1,0 +1,33 @@
+# Mục lục
+1. [Thông tin Task](#1-thông-tin-task)
+2. [Các công việc đã hoàn thành](#2-các-công-việc-đã-hoàn-thành)
+3. [Kết quả](#3-kết-quả)
+
+---
+
+# 1. Thông tin Task
+- **Tên Task:** Tích Hợp Toàn Diện Hệ Sinh Thái ChatGPT / OpenAI & GitHub Copilot & Cursor vào AgentUnity (Universal Tri-Agent)
+- **Ngày thực hiện:** 2026-08-16
+- **Mục tiêu:** Mở rộng bộ khung AgentUnity hỗ trợ trọn vẹn cả 3 hệ sinh thái AI hàng đầu: Google Gemini, Anthropic Claude Code, và OpenAI / ChatGPT (GPT-4o, o1, o3-mini, GitHub Copilot, Cursor).
+
+---
+
+# 2. Các công việc đã hoàn thành
+1. **Entry Point & Templates cho OpenAI / ChatGPT:**
+   - Tạo file `CHATGPT.md`: Bản chỉ dẫn cốt lõi tối ưu cho ChatGPT Projects, System Prompts và OpenAI API.
+   - Tạo file `CHATGPT_TEMPLATE.md`: Template sạch kích hoạt onboarding tự động cho dự án game mới.
+2. **Hỗ trợ GitHub Copilot & Cursor IDE:**
+   - Tạo `.github/copilot-instructions.md`: Chỉ dẫn an toàn Unity YAML & C# Zero-GC cho GitHub Copilot.
+   - Tạo `.cursorrules`: Bộ quy tắc phát triển pair-programming cho Cursor IDE.
+3. **Thư mục cấu hình chuyên biệt `.openai/`:**
+   - Tạo `.openai/rules/` và `.openai/recipes/` đồng bộ đầy đủ các quy tắc an toàn và mẫu kiến trúc C#.
+4. **Nâng cấp công cụ đồng bộ 3 chiều `scripts/sync-agents.js`:**
+   - Tự động đồng bộ rules & recipes giữa `.agents/` (Gemini), `.claude/` (Claude) và `.openai/` (ChatGPT).
+5. **Cập nhật Bộ cài đặt 1 lệnh & Tài liệu:**
+   - Cập nhật `install.ps1` (PowerShell) và `install.sh` (Bash) để tự động cài đặt đầy đủ cả 3 Agent.
+   - Cập nhật `README.md` sang chuẩn Universal Tri-Agent Framework.
+
+---
+
+# 3. Kết quả
+- Bộ khung AgentUnity trở thành giải pháp Universal Tri-Agent toàn diện: Dev có thể dùng bất kỳ tool/model nào (Gemini Antigravity, Claude Code, ChatGPT Web/Project, GitHub Copilot, Cursor) trên cùng một dự án Unity mà không lo lệch quy chuẩn hay mất an toàn dữ liệu YAML.
