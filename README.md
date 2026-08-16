@@ -1,137 +1,110 @@
-# AgentUnity — Universal AI Agent Framework for Unity (Gemini, Claude & ChatGPT)
+# 🚀 AgentUnity — Universal AI Agent Framework for Unity
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Engine-Unity%206%20%7C%202022%20LTS-black?style=for-the-badge&logo=unity" />
-  <img src="https://img.shields.io/badge/AI%20Agents-Gemini%20%7C%20Claude%20%7C%20ChatGPT%20%7C%20Copilot-purple?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/MCP-Unity%20Server%20Ready-brightgreen?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Architecture-Clean%20%26%20Zero--GC-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Unity-6%20%7C%202022%20LTS-black?style=for-the-badge&logo=unity&logoColor=white" />
+  <img src="https://img.shields.io/badge/Gemini-Antigravity%20Ready-4285F4?style=for-the-badge&logo=google&logoColor=white" />
+  <img src="https://img.shields.io/badge/Claude-Code%20Ready-D97706?style=for-the-badge&logo=anthropic&logoColor=white" />
+  <img src="https://img.shields.io/badge/OpenAI-ChatGPT%20%7C%20Copilot-10A37F?style=for-the-badge&logo=openai&logoColor=white" />
+  <img src="https://img.shields.io/badge/Unity%20MCP-Connected%20🟢-brightgreen?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Architecture-Clean%20%7C%20Zero--GC-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
 </p>
 
-Bộ khung cấu hình, quy tắc an toàn, automation scripts, subagents và mẫu kiến trúc chuẩn hoá dành cho **Đa AI Agent (Google Antigravity / Gemini, Anthropic Claude Code & OpenAI / ChatGPT / Copilot / Cursor)** khi lập trình cặp (Pair-Programming) trên các dự án Unity Engine.
+> **AgentUnity** là bộ khung cấu hình, quy tắc an toàn, automation hooks, subagents và mẫu kiến trúc C# chuẩn hoá dành riêng cho **Đa AI Agent (Google Gemini / Antigravity, Anthropic Claude Code, OpenAI ChatGPT / Copilot / Cursor)** khi lập trình cặp (*Pair-Programming*) trên các dự án Unity Engine.
 
 ---
 
 # Mục lục
-1. [Tổng Quan Tính Năng](#1-tổng-quan-tính-năng)
-2. [Bản Đồ Cấu Trúc Hệ Thống](#2-bản-đồ-cấu-trúc-hệ-thống)
-3. [Cơ Chế Tri-Agent & Cross-Agent Handoff](#3-cơ-chế-tri-agent--cross-agent-handoff)
-4. [Hệ Thống Trụ Cột (Core Modules)](#4-hệ-thống-trụ-cột-core-modules)
-   - [4.1. Lifecycle Hooks & Safety Guards](#41-lifecycle-hooks--safety-guards)
-   - [4.2. Architecture Recipes (11 Mẫu Code C#)](#42-architecture-recipes-11-mẫu-code-c)
-   - [4.3. Rules & Guardrails](#43-rules--guardrails)
-   - [4.4. Slash Commands & Subagents](#44-slash-commands--subagents)
-   - [4.5. Living Docs & QC Checklists](#45-living-docs--qc-checklists)
-5. [Cài Đặt Tự Động 1 Lệnh (1-Command Quick Install)](#5-cài-đặt-tự-động-1-lệnh-1-command-quick-install)
-6. [Quy Trình Tự Động Onboarding Của AI](#6-quy-trình-tự-động-onboarding-của-ai)
-7. [Quy Chuẩn Pair-Programming](#7-quy-chuẩn-pair-programming)
+1. [Điểm Nổi Bật & Triết Lý Thiết Kế](#1-điểm-nổi-bật--triết-lý-thiết-kế)
+2. [Ma Trận Tính Năng Đa Agent (Tri-Agent Matrix)](#2-ma-trận-tính-năng-đa-agent-tri-agent-matrix)
+3. [Bản Đồ Cấu Trúc Hệ Thống](#3-bản-đồ-cấu-trúc-hệ-thống)
+4. [Cài Đặt Tự Động 1 Lệnh (1-Command Quick Install)](#4-cài-đặt-tự-động-1-lệnh-1-command-quick-install)
+5. [Quy Trình Tự Động Onboarding Cho Dự Án Mới](#5-quy-trình-tự-động-onboarding-cho-dự-án-mới)
+6. [Hệ Thống Trụ Cột Cốt Lõi (Core Modules)](#6-hệ-thống-trụ-cột-cốt-lõi-core-modules)
+   - [6.1. Bảo Vệ An Toàn Asset & 8 Bẫy Ngầm Unity MCP](#61-bảo-vệ-an-toàn-asset--8-bẫy-ngầm-unity-mcp)
+   - [6.2. 11 Architecture Recipes (Mẫu Code C# Chuẩn)](#62-11-architecture-recipes-mẫu-code-c-chuẩn)
+   - [6.3. Hệ Thống Rules & Knowledge Graph Điều Hướng 2 Tầng](#63-hệ-thống-rules--knowledge-graph-điều-hướng-2-tầng)
+   - [6.4. Slash Commands & Subagents](#64-slash-commands--subagents)
+   - [6.5. Quản Trị Living Docs & Worklog Fragments](#65-quản-trị-living-docs--worklog-fragments)
+7. [Cơ Chế Bàn Giao Chéo (Cross-Agent Handoff) & Auto-Sync](#7-cơ-chế-bàn-giao-chéo-cross-agent-handoff--auto-sync)
+8. [Quy Chuẩn Pair-Programming](#8-quy-chuẩn-pair-programming)
 
 ---
 
-# 1. Tổng Quan Tính Năng
-- 🛡️ **Bảo Vệ Toàn Vẹn Asset Unity:** Chặn cứng AI sửa trực tiếp `.prefab`, `.unity`, `.asset`, `.meta` qua text tool, ngăn ngừa triệt để lỗi mất GUID / broken references.
-- ⚡ **Zero-GC & High Performance:** Kiểm soát triệt để cấp phát bộ nhớ trong GameLoop (`Update`, `LateUpdate`, Coroutine, Events).
-- 🔄 **Universal Tri-Agent Ready:** Hỗ trợ song song cả **Antigravity (Gemini)**, **Claude Code (Claude)**, và **ChatGPT / OpenAI / GitHub Copilot / Cursor** trên cùng một dự án Unity.
-- 🤝 **Bàn Giao Chéo (Cross-Agent Handoff):** Đóng session ở Gemini -> Mở Claude Code hoặc ChatGPT tiếp tục ngay lập tức mà không mất ngữ cảnh.
-- ⚡ **Tối Ưu Vòng Lặp Phản Hồi:** Hỗ trợ kiến trúc Assembly Definitions (`.asmdef`) đưa thời gian compile C# xuống **< 1 giây**.
-- 🔗 **Tích Hợp Sâu Unity MCP Server:** Hướng dẫn và bảo vệ 8 bẫy ngầm khi AI điều khiển Unity Editor trực tiếp qua MCP.
-- 🚀 **1-Command Quick Setup & Auto Onboarding:** Cài đặt toàn bộ bộ khung chỉ với 1 câu lệnh, AI tự động hỏi và thiết lập cấu hình dự án.
+# 1. Điểm Nổi Bật & Triết Lý Thiết Kế
+
+- 🛡️ **Bảo Vệ Toàn Vẹn Asset Unity (Safety Guard):** Chặn cứng AI sửa đè trực tiếp các file `.prefab`, `.unity`, `.asset`, `.meta` bằng text tool, ngăn ngừa 100% lỗi mất liên kết ngầm (broken GUID / FileID).
+- ⚡ **Zero-GC Allocations & High-Performance C#:** Cưỡng chế quy chuẩn tối ưu bộ nhớ trong GameLoop (`Update`, `LateUpdate`, Coroutines, Events, NonAlloc Physics).
+- 🔄 **Universal Tri-Agent Ecosystem:** Hỗ trợ song song và đồng bộ 3 chiều giữa **Google Gemini** (Antigravity), **Anthropic Claude Code**, và **OpenAI ChatGPT / Copilot / Cursor**.
+- 🤝 **Bàn Giao Chéo Liền Mạch (Cross-Agent Handoff):** Đóng session ở Gemini -> Mở Claude Code hoặc ChatGPT tiếp tục làm việc ngay lập tức mà không bao giờ rơi rớt ngữ cảnh.
+- ⚡ **Vòng Lặp Phản Hồi Siêu Tốc:** Thiết lập kiến trúc Assembly Definitions (`.asmdef`) phân tầng giúp thời gian compile mã nguồn C# luôn đạt **< 1 giây**.
+- 🔗 **Tích Hợp Sâu Unity MCP Server:** Cẩm nang và bộ phòng vệ 8 bẫy ngầm khi điều khiển Unity Editor trực tiếp qua MCP.
+- 🚀 **1-Command Install & Auto-Onboarding:** Cài đặt toàn bộ bộ khung bằng 1 dòng lệnh duy nhất, AI tự phỏng vấn và hoàn thiện config dự án.
 
 ---
 
-# 2. Bản Đồ Cấu Trúc Hệ Thống
+# 2. Ma Trận Tính Năng Đa Agent (Tri-Agent Matrix)
+
+| Tính Năng / Năng Lực | 🟢 Google Gemini (Antigravity) | 🟣 Anthropic Claude Code | 🟢 OpenAI ChatGPT / Copilot / Cursor |
+| :--- | :---: | :---: | :---: |
+| **Entry Point File** | `AGENTS.md` (Root) | `CLAUDE.md` (Root) | `CHATGPT.md` / `.cursorrules` (Root) |
+| **Thư Mục Cấu Hình** | `.agents/` | `.claude/` | `.openai/` & `.github/` |
+| **Lifecycle Safety Hooks** | ✅ `PreToolUse`, `PreInvocation` | ✅ Hook scripts & permissions | 🛡️ Instructions & Linter guard |
+| **Slash Commands** | ✅ 10 Skills (`.agents/skills/`) | ✅ 10 Commands (`.claude/commands/`) | 📋 Prompt Templates (`Docs/prompts/`) |
+| **Subagents Chuyên Trách** | 🔄 Subagent spawning | ✅ 4 Agents (`.claude/agents/`) | 🤖 Custom GPTs / Assistants |
+| **Shared Living Docs** | ✅ `Docs/` (100% Chung) | ✅ `Docs/` (100% Chung) | ✅ `Docs/` (100% Chung) |
+| **3-Way Auto Sync Tool** | ✅ `node scripts/sync-agents.js` | ✅ `node scripts/sync-agents.js` | ✅ `node scripts/sync-agents.js` |
+
+---
+
+# 3. Bản Đồ Cấu Trúc Hệ Thống
 
 ```text
 AgentUnity/
-├── install.ps1                    # Script cài đặt tự động 1 lệnh cho Windows (PowerShell)
-├── install.sh                     # Script cài đặt tự động 1 lệnh cho macOS & Linux (Bash)
-├── .editorconfig                  # Cưỡng chế quy chuẩn định dạng C# Unity cấp IDE & Root
-├── .gitattributes                 # Cấu hình Git LFS cho Binary Assets & Text Diff cho C#/YAML
-├── .gitignore                     # Chặn file rác Library/, Temp/, Logs/ của Unity 6 & LTS
-├── CHATGPT.md & CHATGPT_TEMPLATE  # Entry points tối ưu cho ChatGPT & OpenAI
-├── CLAUDE.md & CLAUDE_TEMPLATE.md # Entry points tối ưu cho Claude Code
-├── .cursorrules                   # Cấu hình quy chuẩn cho Cursor IDE
+├── AGENTS.md & AGENTS_TEMPLATE.md     # 🟢 Entry points cho Google Gemini (Antigravity)
+├── CLAUDE.md & CLAUDE_TEMPLATE.md     # 🟣 Entry points cho Claude Code
+├── CHATGPT.md & CHATGPT_TEMPLATE.md   # 🟢 Entry points cho ChatGPT & OpenAI
+├── .cursorrules                       # 🔵 Cấu hình quy chuẩn cho Cursor IDE
 ├── .github/
-│   └── copilot-instructions.md    # Hướng dẫn quy chuẩn cho GitHub Copilot
+│   └── copilot-instructions.md        # 🐙 Hướng dẫn quy chuẩn cho GitHub Copilot
+├── .editorconfig                      # 📐 Cưỡng chế quy chuẩn định dạng C# Unity
+├── .gitattributes                     # 📦 Cấu hình Git LFS cho Binary Assets & Text Diff
+├── .gitignore                         # 🚫 Chặn file rác Library/, Temp/, Logs/ Unity 6 & LTS
+├── install.ps1                        # ⚡ Script cài đặt tự động 1 lệnh cho Windows (PowerShell)
+├── install.sh                         # ⚡ Script cài đặt tự động 1 lệnh cho macOS & Linux (Bash)
+├── README.md                          # 📖 Tài liệu tổng quan bộ khung
+│
 ├── scripts/
-│   └── sync-agents.js             # Công cụ tự động đồng bộ 3 chiều Rules & Recipes
-├── .agents/                       # Cấu hình tối ưu cho Antigravity (Gemini)
-│   ├── AGENTS.md                  # Tài liệu định hướng tổng quan cho Framework
-│   ├── AGENTS_TEMPLATE.md         # Template mẫu sạch để copy sang dự án Game cụ thể
-│   ├── hooks.json                 # Cấu hình 5 Lifecycle Hooks của Antigravity
-│   ├── hooks/                     # Scripts bảo vệ an toàn, linter C#, context guards
-│   ├── rules/                     # 4 Rules chuẩn hóa (Always-on & Model-decision)
-│   ├── recipes/                   # 11 Recipes mẫu C# Unity + Bảng index điều hướng
-│   └── skills/                    # 10 Kỹ năng mở rộng (/convention-check, /test-run...)
-├── .claude/                       # Cấu hình tối ưu cho Claude Code
-│   ├── settings.json              # Permissions chặn YAML & Hooks
-│   ├── rules/ & recipes/ & hooks/ # Rules & Templates đồng bộ
-│   ├── commands/                  # 10 Slash Commands (.md)
-│   └── agents/                    # 4 Subagents chuyên trách
-├── .openai/                       # Cấu hình tối ưu cho ChatGPT / OpenAI
-│   └── rules/ & recipes/          # Rules & Templates đồng bộ
-└── Docs/                          # 🌟 SHARED SOURCE OF TRUTH (100% Chung)
-    ├── SourceOfTruth/             # Spec kỹ thuật phân hệ 4 phần chuẩn (_TEMPLATE.txt)
-    ├── Decisions/                 # Nhật ký quyết định kiến trúc ADR (D000__decision-template.txt)
-    ├── Handoffs/                  # Mẫu bàn giao công việc & Prompt 4-field (handoff.txt)
-    ├── QC/                        # Bộ checklist kiểm thử chất lượng (QC01, QC02)
-    ├── Done/                      # Thư mục lưu trữ Worklog Fragments (<date>__<slug>.txt)
-    └── prompts/                   # Kịch bản prompt nhanh & mẫu câu lệnh MCP
+│   └── sync-agents.js                 # 🔄 Công cụ tự động đồng bộ 3 chiều Rules & Recipes
+│
+├── .agents/                           # 🟢 Bộ công cụ cho Antigravity (Gemini)
+│   ├── hooks.json                     # Cấu hình Lifecycle Hooks
+│   ├── hooks/                         # Scripts bảo vệ an toàn, linter C#, context guards
+│   ├── rules/                         # 4 Rules chuẩn hóa (Always-on & Model-decision)
+│   ├── recipes/                       # 11 Architecture Recipes mẫu C#
+│   └── skills/                        # 10 Kỹ năng mở rộng (/convention-check, /test-run...)
+│
+├── .claude/                           # 🟣 Bộ công cụ cho Claude Code
+│   ├── settings.json                  # Cấu hình quyền thực thi & MCP servers
+│   ├── rules/ & recipes/ & hooks/     # Rules, Recipes và Hooks đồng bộ
+│   ├── commands/                      # 10 Slash Commands (.md)
+│   └── agents/                        # 4 Subagents chuyên trách (auditor, reviewer, refactor, tester)
+│
+├── .openai/                           # 🟢 Bộ công cụ cho ChatGPT & OpenAI
+│   └── rules/ & recipes/              # Rules và Recipes đồng bộ
+│
+└── Docs/                              # 🌟 SHARED LIVING DOCS (100% Dùng Chung)
+    ├── SourceOfTruth/                 # Thiết kế game (GDD) & Spec kỹ thuật chuẩn
+    ├── Decisions/                     # Nhật ký quyết định kiến trúc (ADR)
+    ├── Handoffs/                      # Mẫu bàn giao phiên làm việc & Prompt handoff
+    ├── QC/                            # Checklist kiểm thử chất lượng (QC01, QC02)
+    ├── Done/                          # Worklog fragments lưu trữ task đã đóng (.txt)
+    └── prompts/                       # Kịch bản prompt nhanh & mẫu câu lệnh MCP
 ```
 
 ---
 
-# 3. Cơ Chế Tri-Agent & Cross-Agent Handoff
-
-Dự án cho phép bạn linh hoạt chuyển đổi giữa **Gemini**, **Claude Code**, và **ChatGPT / OpenAI**:
-1. **Làm việc với Gemini (Antigravity IDE):** Khi kết thúc phiên làm việc, gõ `/newsession` -> Gemini tự động ghi tóm tắt vào `Docs/Handoffs/handoff.txt` và lưu fragment tại `Docs/Done/`.
-2. **Tiếp tục với Claude Code hoặc ChatGPT:**
-   - **Claude:** Mở Terminal gõ `claude` -> Ra lệnh: *"Đọc `Docs/Handoffs/handoff.txt` và tiếp tục task tiếp theo"*.
-   - **ChatGPT:** Đính kèm `Docs/Handoffs/handoff.txt` vào prompt hoặc ChatGPT Project.
-3. **Đồng bộ tự động 3 chiều:** Khi bạn cập nhật bất kỳ Rule hoặc Recipe nào ở bất kỳ Agent nào, chỉ cần chạy:
-   ```bash
-   node scripts/sync-agents.js
-   ```
-
----
-
-# 4. Hệ Thống Trụ Cột (Core Modules)
-
-### 4.1. Lifecycle Hooks & Safety Guards
-Nằm tại `.agents/hooks/` và `.claude/hooks/`:
-- **`asset-write-guard.js`**: Chặn đứng hành vi ghi đè file serialized Unity bằng text tool.
-- **`unity-safety-inject.js`**: Tự động tiêm 8 bẫy ngầm khi tương tác qua Unity MCP.
-- **`convention-lint-guard.js`**: Tự động chạy linter C# bắt lỗi cú pháp, GC allocation và lifecycle rỗng.
-- **`read-guard.js`**: Nhắc nhở đọc file lớn có giới hạn dòng (`StartLine`/`EndLine`).
-- **`closeout-trigger.js`**: Nhắc nhở tạo Worklog Fragment khi chạy `git commit`.
-
-### 4.2. Architecture Recipes (11 Mẫu Code C#)
-Nằm tại `recipes/` (Tra cứu tại `00-recipe-index.md`):
-- `recipe-manager.md`: System Manager & Service Controller (`Initialize`, `Shutdown`).
-- `recipe-ui-panel.md`: UI Panel & Popup (`CanvasGroup`, `Open`/`Close`, ngăn nuốt click).
-- `recipe-event.md`: Event Bus & C# Events type-safe (Struct payload, OnEnable/OnDisable).
-- `recipe-save-data.md`: Save Data persistence (`schemaVersion`, `CreateDefault`, `MigrateIfNeeded`).
-- `recipe-scriptableobject.md`: Game Configs & Catalog tĩnh (Read-only properties, `OnValidate`).
-- `recipe-statemachine.md`: Finite State Machine FSM (`Enter`, `Update`, `Exit`).
-- `recipe-tween.md`: Tween Animation DOTween (DOKill, Unscaled time cho UI).
-- `recipe-pool.md`: Object Pooling tối ưu GC Alloc (`UnityEngine.Pool.ObjectPool`).
-- `recipe-constants.md`: Centralized Constants (`Scenes`, `Tags`, `Layers`, `StringToHash`).
-- `recipe-unit-test.md`: Unit Testing NUnit (EditMode, TDD Loop).
-- `recipe-asmdef.md`: Assembly Definitions phân tầng 1 chiều.
-
-### 4.3. Rules & Guardrails
-Nằm tại `rules/`:
-- **`unity-safety.md`**: Quy tắc an toàn tối thượng cho Unity & MCP.
-- **`knowledge-graph.md`**: Dispatcher điều hướng tra cứu domain 2 tầng.
-- **`code-conventions.md`**: Quy chuẩn viết code C# Unity.
-- **`doc-policy.md`**: Quy định tài liệu sống và worklog fragment.
-
-### 4.4. Slash Commands & Subagents
-- **Commands:** `/convention-check`, `/test-run`, `/worktree`, `/move-file-unity`, `/newsession`, `/explain`, `/unity-mcp-guide`, `/doc`, `/restructure-script`, `/system-cleanup`.
-- **Subagents (Claude Code):** `unity-auditor`, `code-reviewer`, `refactor-expert`, `qa-tester`.
-
----
-
-# 5. Cài Đặt Tự Động 1 Lệnh (1-Command Quick Install)
+# 4. Cài Đặt Tự Động 1 Lệnh (1-Command Quick Install)
 
 Mở Terminal tại **thư mục gốc của bất kỳ dự án Unity nào** và chạy 1 lệnh duy nhất:
 
@@ -140,26 +113,103 @@ Mở Terminal tại **thư mục gốc của bất kỳ dự án Unity nào** v�
 irm https://raw.githubusercontent.com/hieu180704/AgentUnity/main/install.ps1 | iex
 ```
 
-### Cho macOS / Linux (Bash):
+### Cho macOS & Linux (Bash):
 ```bash
 curl -fsSL https://raw.githubusercontent.com/hieu180704/AgentUnity/main/install.sh | bash
 ```
 
 ---
 
-# 6. Quy Trình Tự Động Onboarding Của AI
-Sau khi chạy lệnh cài đặt:
-1. Mở dự án trong **Antigravity IDE** (Gemini), **Claude Code**, hoặc nạp `CHATGPT.md` vào **ChatGPT**.
-2. Khi bạn bắt đầu trò chuyện với AI (hoặc gõ `"Bắt đầu"`):
-   - AI đọc `AGENTS.md` / `CLAUDE.md` / `CHATGPT.md`, nhận diện cờ Onboarding và **tự động chủ động hỏi bạn 4 câu hỏi**:
-     - *Tên dự án game?*
-     - *Thể loại & Core Gameplay loop?*
-     - *Unity Version & Render Pipeline (URP/Built-in/HDRP)?*
-     - *Các Third-party Packages/Plugins đang sử dụng?*
-   - Sau khi bạn trả lời, AI sẽ **tự động điền hoàn thiện file cấu hình** cho dự án của bạn và sẵn sàng pair-programming ngay lập tức!
+# 5. Quy Trình Tự Động Onboarding Cho Dự Án Mới
+
+Ngay sau khi chạy lệnh cài đặt, bạn chỉ cần mở dự án với bất kỳ AI Agent nào:
+
+```text
+🧑‍💻 Dev: "Bắt đầu setup dự án"
+🤖 AI: "Chào bạn! Tôi phát hiện dự án mới cần Onboarding. Hãy cho tôi biết:
+        1. Tên dự án game của bạn?
+        2. Thể loại & Gameplay loop chính (2D/3D, core loop)?
+        3. Unity Version & Render Pipeline (URP/HDRP/Built-in)?
+        4. Các thư viện Third-party (UniTask, DOTween, Odin, Zenject...)?"
+🧑‍💻 Dev: [Trả lời 4 câu hỏi]
+🤖 AI: "✅ Đã tự động cập nhật AGENTS.md, CLAUDE.md & CHATGPT.md! Chúng ta sẵn sàng pair-programming!"
+```
 
 ---
 
-# 7. Quy Chuẩn Pair-Programming
-- **Quy trình 4 bước:** `explore -> propose -> confirm -> execute`. Dừng lại ở mỗi bước để xác nhận, không tự ý nhảy bước khi chưa được duyệt.
-- **Tiêu chuẩn cốt lõi:** *Correct, minimal, verifiable* — giải quyết triệt để nguyên nhân gốc rễ (Root Cause), không vá tạm triệu chứng.
+# 6. Hệ Thống Trụ Cột Cốt Lõi (Core Modules)
+
+### 6.1. Bảo Vệ An Toàn Asset & 8 Bẫy Ngầm Unity MCP
+Nằm tại `rules/unity-safety.md`:
+- **Chặn sửa đè YAML:** Cấm tuyệt đối dùng text tool can thiệp `.prefab`, `.unity`, `.asset`, `.meta`.
+- **8 Bẫy ngầm runtime:**
+  1. *Lệch tên Property:* `Graphic`/`Image` dùng field serialized (`m_Color`), `RectTransform` dùng public API (`sizeDelta`).
+  2. *UI Child rỗng:* GameObject con tạo trong Canvas không tự thêm `RectTransform`.
+  3. *Wire Reference:* Luôn đọc ngược lại (read-back verify) sau khi gán tham chiếu.
+  4. *Kiểm tra GUID:* Dùng `AssetDatabase.GUIDToAssetPath`, không grep path trong `Assets/`.
+  5. *Lưu Asset chọn lọc:* Dùng `SaveAssetIfDirty`, tránh gọi `SaveAssets` toàn bộ khi scene dirty.
+  6. *Timeout MCP:* Timeout không đồng nghĩa lệnh hỏng; luôn check `git diff` trước khi retry.
+  7. *Git Revert:* Revert asset qua git phải kích hoạt Unity Editor `Refresh`/`ImportAsset`.
+  8. *Snippet Code:* Chạy dưới dạng Method-Body; dùng Fully-Qualified Types thay vì `using`.
+
+### 6.2. 11 Architecture Recipes (Mẫu Code C# Chuẩn)
+Nằm tại `recipes/` (Tra cứu tại `00-recipe-index.md`):
+
+| Tên Recipe | Mục Đích Sử Dụng | Đặc Điểm Kỹ Thuật |
+| :--- | :--- | :--- |
+| **`recipe-manager`** | System Manager & Service Controller | Khởi tạo 2 pha (`Initialize`/`Shutdown`), Anti-null, Singleton an toàn |
+| **`recipe-ui-panel`** | Màn hình, Popup, Navigation | `CanvasGroup` fading, `blocksRaycasts`, chặn click xuyên thấu |
+| **`recipe-event`** | Event Bus & C# Events type-safe | Payload `readonly struct`, zero-alloc, auto unbind `OnDisable` |
+| **`recipe-save-data`** | Persistence & Data Migration | `schemaVersion`, `CreateDefault()`, tự động migrate dữ liệu cũ |
+| **`recipe-scriptableobject`** | Game Configs & Catalog tĩnh | Read-only properties, validation dữ liệu trong Editor |
+| **`recipe-statemachine`** | Finite State Machine (FSM) | Enum-driven, phân tách rõ `Enter`, `Update`, `Exit` |
+| **`recipe-tween`** | DOTween Animations | Cưỡng chế `DOKill`, unscaled time cho UI khi pause game |
+| **`recipe-pool`** | Object Pooling hiệu năng cao | Tái sử dụng `UnityEngine.Pool.ObjectPool`, Zero GC Alloc |
+| **`recipe-constants`** | Hằng số tập trung | Centralized Tags, Layers, Scenes, `StringToHash` |
+| **`recipe-unit-test`** | Unit Test tự động (NUnit) | EditMode & PlayMode Test, khép kín vòng lặp TDD |
+| **`recipe-asmdef`** | Assembly Definitions | Phân tầng modularity 1 chiều, Compile Time < 1s |
+
+### 6.3. Hệ Thống Rules & Knowledge Graph Điều Hướng 2 Tầng
+- **Tầng 1 (Dispatcher Node-0):** `knowledge-graph.md` điều hướng chính xác domain cần tra cứu, ngăn ngừa việc scan/grep toàn bộ repository tốn kém hàng chục ngàn tokens.
+- **Tầng 2 (Leaf Nodes):** `Docs/SourceOfTruth/<Domain>/spec.txt` mô tả sâu logic, call flow và danh sách class cốt lõi.
+
+### 6.4. Slash Commands & Subagents
+- **10 Slash Commands:** `/convention-check`, `/test-run`, `/worktree`, `/move-file-unity`, `/newsession`, `/explain`, `/unity-mcp-guide`, `/doc`, `/restructure-script`, `/system-cleanup`.
+- **4 Subagents chuyên trách (Claude Code):** `unity-auditor` (kiểm toán asset), `code-reviewer` (review GC & conventions), `refactor-expert` (tách God Class), `qa-tester` (kiểm thử NUnit).
+
+### 6.5. Quản Trị Living Docs & Worklog Fragments
+- Cấu trúc `Docs/` tinh gọn: `SourceOfTruth`, `Decisions` (ADR), `Handoffs`, `QC`, `prompts`, `Done`.
+- Worklog fragments dạng `Docs/Done/YYYY-MM-DD__<task-name>.txt` ghi nhận minh bạch mọi mốc hoàn thành.
+
+---
+
+# 7. Cơ Chế Bàn Giao Chéo (Cross-Agent Handoff) & Auto-Sync
+
+Bộ khung cho phép chuyển đổi linh hoạt giữa các AI Engine mà không mất ngữ cảnh:
+
+```mermaid
+graph TD
+    A[🧑‍💻 Làm việc với Gemini] -->|Gõ /newsession| B[📝 Sinh Handoff: Docs/Handoffs/latest.txt]
+    B -->|Mở Terminal| C[🟣 Claude Code tiếp tục ngay]
+    B -->|Nạp Prompt| D[🟢 ChatGPT / Cursor tiếp tục ngay]
+    C -->|Sửa Rules/Recipes| E[⚙️ Chạy: node scripts/sync-agents.js]
+    D -->|Sửa Rules/Recipes| E
+    E -->|Đồng bộ 3 chiều| F[✅ Zero-Drift trên cả 3 Agent]
+```
+
+---
+
+# 8. Quy Chuẩn Pair-Programming
+
+Mọi AI Agent khi làm việc trong hệ thống AgentUnity đều phải tuân thủ nghiêm ngặt:
+1. **Quy trình 4 pha bắt buộc:** `explore -> propose -> confirm -> execute`. Dừng lại ở mỗi pha để tóm tắt và chờ người dùng xác nhận (`confirm`), không tự ý nhảy cóc.
+2. **Tiêu chuẩn chất lượng:** *Correct, minimal, verifiable* — giải quyết triệt để nguyên nhân gốc rễ (Root Cause), không vá tạm triệu chứng.
+3. **Đọc trước khi làm:** Trích dẫn dòng cụ thể (`filename:Lxx-Lyy`) để có thể verify. "Đọc lại" nghĩa là đọc từ đầu file, không dựa trên trí nhớ.
+4. **Không Over-Scope:** Làm đúng phạm vi yêu cầu, không tự tiện refactor hay dọn dẹp các file ngoài phạm vi.
+5. **Trung thực & Thẳng thắn:** Phát hiện sai sót giữa chừng → báo ngay cho người dùng, không âm thầm patch.
+
+---
+
+<p align="center">
+  <b>Được phát triển với niềm đam mê dành cho cộng đồng Unity Game Developers 🎮</b>
+</p>
