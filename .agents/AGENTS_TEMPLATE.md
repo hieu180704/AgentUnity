@@ -1,5 +1,13 @@
 # [Project Name] — Project Map & Conventions
 
+> ⚠️ **HƯỚNG DẪN DÀNH CHO AI AGENT (ONBOARDING MODE):**
+> Nếu file này còn chứa các placeholder dạng `[Project Name]` hoặc `[Mô tả ...]`, AI BẮT BUỘC phải chủ động chào Dev và hỏi các câu hỏi sau để hoàn thiện file `AGENTS.md` này trước khi bắt đầu thực hiện task:
+> 1. **Tên dự án game:**
+> 2. **Thể loại & Gameplay chính:** (2D/3D, core loop, góc nhìn...)
+> 3. **Unity Version & Render Pipeline:** (Unity 6 / 2022 LTS, URP / Built-in / HDRP)
+> 4. **Third-party Packages / Plugins:** (UniTask, DOTween, Odin Inspector, Zenject, v.v.)
+> *Sau khi Dev trả lời, AI cập nhật đè thông tin thực tế vào file này và xóa khối hướng dẫn này.*
+
 # Mục lục
 1. [Tổng quan dự án](#1-tổng-quan-dự-án)
 2. [Tech Stack & Dependencies](#2-tech-stack--dependencies)

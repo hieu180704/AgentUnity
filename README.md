@@ -13,8 +13,9 @@ Bộ khung cấu hình, quy tắc an toàn, kịch bản tự động hoá và m
    - [3.3. Rules & Guardrails (Quy Chuẩn)](#33-rules--guardrails-quy-chuẩn)
    - [3.4. Skills Mở Rộng (Slash Commands)](#34-skills-mở-rộng-slash-commands)
    - [3.5. Living Docs & QC Checklists](#35-living-docs--qc-checklists)
-4. [Hướng Dẫn Cài Đặt & Sử Dụng](#4-hướng-dẫn-cài-đặt--sử-dụng)
-5. [Quy Chuẩn Pair-Programming](#5-quy-chuẩn-pair-programming)
+4. [Cài Đặt Tự Động 1 Lệnh (1-Command Quick Install)](#4-cài-đặt-tự-động-1-lệnh-1-command-quick-install)
+5. [Quy Trình Tự Động Onboarding Của AI](#5-quy-trình-tự-động-onboarding-của-ai)
+6. [Quy Chuẩn Pair-Programming](#6-quy-chuẩn-pair-programming)
 
 ---
 
@@ -24,6 +25,7 @@ Bộ khung cấu hình, quy tắc an toàn, kịch bản tự động hoá và m
 - 🧠 **Tiết Kiệm Context Window (Token Conservation):** Cơ chế điều hướng Knowledge Graph 2 tầng và Targeted Read giúp AI chỉ đọc đúng phạm vi cần thiết.
 - 🔗 **Tích Hợp Sâu Unity MCP Server:** Hướng dẫn và bảo vệ 8 bẫy ngầm khi AI điều khiển Unity Editor trực tiếp.
 - ⚙️ **Đồng Bộ Phong Cách Viết Code:** Cưỡng chế quy chuẩn C# Unity K&R qua `.editorconfig` và linter zero-dependency tích hợp sẵn.
+- 🚀 **1-Command Quick Setup & Auto Onboarding:** Cài đặt toàn bộ bộ khung chỉ với 1 câu lệnh, AI tự động hỏi và thiết lập cấu hình dự án.
 
 ---
 
@@ -31,12 +33,14 @@ Bộ khung cấu hình, quy tắc an toàn, kịch bản tự động hoá và m
 
 ```text
 GeminiUnity/
+├── install.ps1                    # Script cài đặt tự động 1 lệnh cho Windows (PowerShell)
+├── install.sh                     # Script cài đặt tự động 1 lệnh cho macOS & Linux (Bash)
 ├── .editorconfig                  # Cưỡng chế quy chuẩn định dạng C# Unity cấp IDE & Root
 ├── .gitattributes                 # Cấu hình Git LFS cho Binary Assets & Text Diff cho C#/YAML
 ├── .gitignore                     # Chặn file rác Library/, Temp/, Logs/ của Unity 6 & LTS
 ├── .agents/
 │   ├── AGENTS.md                  # Tài liệu định hướng tổng quan cho Framework
-│   ├── AGENTS_TEMPLATE.md         # Template mẫu để copy sang dự án Game cụ thể
+│   ├── AGENTS_TEMPLATE.md         # Template mẫu sạch để copy sang dự án Game cụ thể
 │   ├── hooks.json                 # Cấu hình 5 Lifecycle Hooks của Antigravity
 │   ├── hooks/                     # Scripts bảo vệ an toàn, linter C#, context guards
 │   ├── rules/                     # 4 Rules chuẩn hóa (Always-on & Model-decision)
@@ -99,20 +103,39 @@ Nằm tại `.agents/skills/`:
 
 ---
 
-# 4. Hướng Dẫn Cài Đặt & Sử Dụng
+# 4. Cài Đặt Tự Động 1 Lệnh (1-Command Quick Install)
 
-### Bước 1: Áp dụng vào dự án Game Unity mới
-1. Sao chép toàn bộ thư mục `.agents/`, `Docs/`, cùng các file `.editorconfig`, `.gitignore`, `.gitattributes` vào thư mục gốc của dự án Unity của bạn.
-2. Đổi tên file `.agents/AGENTS_TEMPLATE.md` thành `.agents/AGENTS.md` tại dự án mới.
-3. Điền thông tin game của bạn vào `.agents/AGENTS.md` (Tên game, Engine version, Render Pipeline).
+Mở Terminal tại **thư mục gốc của bất kỳ dự án Unity nào** và chạy 1 lệnh duy nhất:
 
-### Bước 2: Bắt đầu Lập Trình Cặp cùng AI
-- Mở project trong IDE (Antigravity IDE / VS Code).
-- Khi yêu cầu tính năng mới: AI sẽ tự động áp dụng quy trình 4 pha và tra cứu các Recipes mẫu.
-- Kết thúc phiên làm việc: Gõ `/newsession` để tạo worklog fragment và lấy prompt bàn giao.
+### Cho Windows (PowerShell):
+```powershell
+irm https://raw.githubusercontent.com/hieu180704/GeminiUnity/main/install.ps1 | iex
+```
+
+### Cho macOS / Linux (Bash):
+```bash
+curl -fsSL https://raw.githubusercontent.com/hieu180704/GeminiUnity/main/install.sh | bash
+```
+
+> **Lệnh trên sẽ tự động:**
+> 1. Tải và giải nén toàn bộ `.agents/`, `Docs/`, `.editorconfig`, `.gitattributes`, `.gitignore`.
+> 2. Kích hoạt file `.agents/AGENTS.md` ở chế độ **Auto-Onboarding**.
 
 ---
 
-# 5. Quy Chuẩn Pair-Programming
+# 5. Quy Trình Tự Động Onboarding Của AI
+Sau khi chạy lệnh cài đặt:
+1. Mở dự án trong **Antigravity IDE** hoặc **VS Code**.
+2. Khi bạn bắt đầu trò chuyện với AI (hoặc gõ `"Bắt đầu"`):
+   - AI đọc `.agents/AGENTS.md`, nhận diện cờ Onboarding và **tự động chủ động hỏi bạn 4 câu hỏi**:
+     - *Tên dự án game?*
+     - *Thể loại & Core Gameplay loop?*
+     - *Unity Version & Render Pipeline (URP/Built-in/HDRP)?*
+     - *Các Third-party Packages/Plugins đang sử dụng?*
+   - Sau khi bạn trả lời, AI sẽ **tự động điền hoàn thiện file `AGENTS.md`** cho dự án của bạn và sẵn sàng pair-programming ngay lập tức!
+
+---
+
+# 6. Quy Chuẩn Pair-Programming
 - **Quy trình 4 bước:** `explore -> propose -> confirm -> execute`. Dừng lại ở mỗi bước để xác nhận, không tự ý nhảy bước khi chưa được duyệt.
 - **Tiêu chuẩn cốt lõi:** *Correct, minimal, verifiable* — giải quyết triệt để nguyên nhân gốc rễ (Root Cause), không vá tạm triệu chứng.
