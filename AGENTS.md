@@ -1,4 +1,4 @@
-# AgentUnity — Universal Unity AI Agent Framework & Starter Kit
+# AgentUnity — Universal Unity AI Agent Framework & Starter Kit for Gemini & Antigravity
 
 # Mục lục
 1. [Tổng quan bộ khung](#1-tổng-quan-bộ-khung)
@@ -25,17 +25,30 @@
 
 # 2. Bản đồ cấu trúc hệ thống
 ```text
-GeminiUnity/
+AgentUnity/
+├── AGENTS.md & AGENTS_TEMPLATE.md # Entry points tối ưu cho Gemini / Antigravity
+├── CLAUDE.md & CLAUDE_TEMPLATE.md # Entry points tối ưu cho Claude Code
+├── CHATGPT.md & CHATGPT_TEMPLATE  # Entry points tối ưu cho ChatGPT & OpenAI
+├── .cursorrules                   # Cấu hình quy chuẩn cho Cursor IDE
+├── .github/
+│   └── copilot-instructions.md    # Hướng dẫn quy chuẩn cho GitHub Copilot
 ├── .editorconfig                  # Cưỡng chế quy chuẩn định dạng C# Unity cấp IDE & Root
-├── .agents/
-│   ├── AGENTS.md                  # Tài liệu định hướng cốt lõi cho Framework
-│   ├── AGENTS_TEMPLATE.md         # Template mẫu sạch để copy sang dự án Game cụ thể
+├── .gitattributes                 # Cấu hình Git LFS cho Binary Assets & Text Diff cho C#/YAML
+├── .gitignore                     # Chặn file rác Library/, Temp/, Logs/ của Unity 6 & LTS
+├── install.ps1                    # Script cài đặt tự động 1 lệnh cho Windows (PowerShell)
+├── install.sh                     # Script cài đặt tự động 1 lệnh cho macOS & Linux (Bash)
+├── README.md                      # Tài liệu tổng quan & hướng dẫn sử dụng
+├── scripts/
+│   └── sync-agents.js             # Công cụ tự động đồng bộ 3 chiều Rules & Recipes
+├── .agents/                       # Cấu hình tối ưu cho Antigravity (Gemini)
 │   ├── hooks.json                 # Cấu hình Lifecycle Hooks của Antigravity
 │   ├── hooks/                     # Scripts bảo vệ, linter và automation (Node.js)
 │   ├── rules/                     # Hệ thống quy tắc nạp động (Always-on & Model-decision)
 │   ├── recipes/                   # Bộ mẫu code chuẩn cho các pattern Unity phổ biến
 │   └── skills/                    # Kỹ năng mở rộng (/convention-check, /test-run...)
-└── Docs/
+├── .claude/                       # Cấu hình cho Claude Code
+├── .openai/                       # Cấu hình cho ChatGPT / OpenAI
+└── Docs/                          # Living Docs Framework
     ├── SourceOfTruth/             # Thiết kế game (GDD) & Spec kỹ thuật chuẩn
     ├── Decisions/                 # Nhật ký quyết định kiến trúc (ADR)
     ├── Handoffs/                  # Handoff giữa các phiên chat & bài học kinh nghiệm
@@ -100,9 +113,9 @@ Nằm tại `.agents/recipes/` (Tra cứu tại `00-recipe-index.md`):
 ---
 
 # 7. Quy trình áp dụng vào Dự án Unity mới
-1. Sao chép toàn bộ thư mục `.agents/`, `Docs/`, và `.editorconfig` vào thư mục gốc của dự án Unity.
-2. Sao chép file `.agents/AGENTS_TEMPLATE.md` thành `.agents/AGENTS.md` tại dự án mới.
-3. Cập nhật thông tin thực tế của game vào `.agents/AGENTS.md` (Tên game, Engine version, Render Pipeline, Cấu trúc thư mục).
+1. Sao chép toàn bộ thư mục `.agents/`, `.claude/`, `.openai/`, `Docs/`, và `.editorconfig` vào thư mục gốc của dự án Unity.
+2. Sao chép file `AGENTS_TEMPLATE.md` thành `AGENTS.md` tại dự án mới.
+3. Cập nhật thông tin thực tế của game vào `AGENTS.md` (Tên game, Engine version, Render Pipeline, Cấu trúc thư mục).
 
 ---
 

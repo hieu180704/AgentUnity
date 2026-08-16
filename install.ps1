@@ -87,11 +87,13 @@ try {
 
     # 4. Tự động khởi tạo AGENTS.md, CLAUDE.md & CHATGPT.md từ template
     Write-Host "[4/4] ⚙️ Đang kích hoạt AGENTS.md, CLAUDE.md & CHATGPT.md cho dự án..." -ForegroundColor Yellow
-    $agentsTemplate = Join-Path ".agents" "AGENTS_TEMPLATE.md"
-    $agentsPath = Join-Path ".agents" "AGENTS.md"
+    $agentsTemplate = "AGENTS_TEMPLATE.md"
+    if (-not (Test-Path $agentsTemplate)) {
+        $agentsTemplate = Join-Path $sourceDir "AGENTS_TEMPLATE.md"
+    }
     if (Test-Path $agentsTemplate) {
-        Copy-Item -Path $agentsTemplate -Destination $agentsPath -Force
-        Write-Host "  + Đã tạo .agents/AGENTS.md sẵn sàng cho Gemini Onboarding" -ForegroundColor Green
+        Copy-Item -Path $agentsTemplate -Destination "AGENTS.md" -Force
+        Write-Host "  + Đã tạo AGENTS.md sẵn sàng cho Gemini Onboarding" -ForegroundColor Green
     }
 
     $claudeTemplate = "CLAUDE_TEMPLATE.md"

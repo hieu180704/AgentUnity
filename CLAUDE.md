@@ -27,16 +27,22 @@
 
 # 2. Bản đồ cấu trúc hệ thống
 ```text
-ClaudeUnity/
-├── CLAUDE.md                      # Tài liệu định hướng cốt lõi cho Framework
-├── CLAUDE_TEMPLATE.md             # Template mẫu sạch để copy sang dự án Game cụ thể
-├── .editorconfig                  # Cưỡng chế quy chuẩn C# Unity cấp IDE & Root
-├── .gitattributes                 # Cấu hình Git LFS cho Asset & Media
-├── .gitignore                     # Ignore chuẩn Unity Engine & Claude artifacts
-├── install.ps1                    # 1-Command Installer cho Windows (PowerShell)
-├── install.sh                     # 1-Command Installer cho macOS / Linux (Bash)
+AgentUnity/
+├── AGENTS.md & AGENTS_TEMPLATE.md # Entry points tối ưu cho Gemini / Antigravity
+├── CLAUDE.md & CLAUDE_TEMPLATE.md # Entry points tối ưu cho Claude Code
+├── CHATGPT.md & CHATGPT_TEMPLATE  # Entry points tối ưu cho ChatGPT & OpenAI
+├── .cursorrules                   # Cấu hình quy chuẩn cho Cursor IDE
+├── .github/
+│   └── copilot-instructions.md    # Hướng dẫn quy chuẩn cho GitHub Copilot
+├── .editorconfig                  # Cưỡng chế quy chuẩn định dạng C# Unity cấp IDE & Root
+├── .gitattributes                 # Cấu hình Git LFS cho Binary Assets & Text Diff cho C#/YAML
+├── .gitignore                     # Chặn file rác Library/, Temp/, Logs/ của Unity 6 & LTS
+├── install.ps1                    # Script cài đặt tự động 1 lệnh cho Windows (PowerShell)
+├── install.sh                     # Script cài đặt tự động 1 lệnh cho macOS & Linux (Bash)
 ├── README.md                      # Tài liệu tổng quan & hướng dẫn sử dụng
-├── .claude/
+├── scripts/
+│   └── sync-agents.js             # Công cụ tự động đồng bộ 3 chiều Rules & Recipes
+├── .claude/                       # Cấu hình tối ưu cho Claude Code
 │   ├── settings.json              # Cấu hình Claude Code: permissions, hooks, mcpServers
 │   ├── rules/                     # Hệ thống quy tắc nạp động (Modular Rules)
 │   │   ├── unity-safety.md        # An toàn Asset Serialized & 8 bẫy ngầm MCP
@@ -68,25 +74,14 @@ ClaudeUnity/
 │   │   └── scripts/
 │   │       └── lint-conventions.js
 │   └── recipes/                   # 11 Mẫu kiến trúc C# Unity chuẩn
-│       ├── 00-recipe-index.md     # Mục lục tra cứu Recipes
-│       ├── recipe-manager.md      # Khởi tạo System / Manager chuẩn
-│       ├── recipe-ui-panel.md     # UI Panel (CanvasGroup, Open/Close)
-│       ├── recipe-event.md        # Event Bus / C# Events type-safe (Struct payload)
-│       ├── recipe-save-data.md    # Dữ liệu lưu trữ (Serialization, Versioning, Migrate)
-│       ├── recipe-scriptableobject.md # ScriptableObject Data / Config
-│       ├── recipe-statemachine.md # Finite State Machine (Enum-driven)
-│       ├── recipe-tween.md        # Tween Animation DOTween (DOKill, Anti-ghost)
-│       ├── recipe-pool.md         # Object Pooling (Get/Release, Zero GC)
-│       ├── recipe-constants.md    # Hằng số tập trung (Scenes, Tags, Layers)
-│       ├── recipe-unit-test.md    # Viết Unit Test NUnit (EditMode / PlayMode)
-│       └── recipe-asmdef.md       # Assembly Definitions (.asmdef) Compile < 1s
+├── .agents/                       # Cấu hình tối ưu cho Antigravity (Gemini)
+├── .openai/                       # Cấu hình tối ưu cho ChatGPT / OpenAI
 └── Docs/                          # Living Docs Framework
     ├── SourceOfTruth/             # Thiết kế game (GDD) & Spec kỹ thuật chuẩn
     ├── Decisions/                 # Nhật ký quyết định kiến trúc (ADR)
     ├── Handoffs/                  # Handoff giữa các phiên chat & bài học kinh nghiệm
     ├── QC/                        # Checklist kiểm thử tính năng
     ├── Done/                      # Worklog fragments ghi nhận các task đã đóng
-    └── prompts/                   # Kịch bản prompt nhanh & mẫu lệnh MCP
 ```
 
 ---

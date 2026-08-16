@@ -74,9 +74,9 @@ else
 fi
 
 echo "[4/4] ⚙️ Đang kích hoạt AGENTS.md, CLAUDE.md & CHATGPT.md cho dự án..."
-if [ -f "$SOURCE_DIR/.agents/AGENTS_TEMPLATE.md" ]; then
-    cp "$SOURCE_DIR/.agents/AGENTS_TEMPLATE.md" ".agents/AGENTS.md"
-    echo "  + Đã tạo .agents/AGENTS.md sẵn sàng cho Gemini Onboarding"
+if [ -f "$SOURCE_DIR/AGENTS_TEMPLATE.md" ]; then
+    cp "$SOURCE_DIR/AGENTS_TEMPLATE.md" "./AGENTS.md"
+    echo "  + Đã tạo AGENTS.md sẵn sàng cho Gemini Onboarding"
 fi
 
 if [ -f "$SOURCE_DIR/CLAUDE_TEMPLATE.md" ]; then
