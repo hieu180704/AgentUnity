@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "edit:*.prefab",
+      "edit:*.unity",
+      "edit:*.asset",
+      "edit:*.meta"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|replace_file_content|write_to_file",
+        "command": "node .claude/hooks/asset-write-guard.js"
+      },
+      {
+        "matcher": "Read|View|view_file",
+        "command": "node .claude/hooks/read-guard.js"
+      },
+      {
+        "matcher": "Bash|RunCommand|run_command",
+        "command": "node .claude/hooks/closeout-trigger.js"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|replace_file_content|write_to_file",
+        "command": "node .claude/hooks/convention-lint-guard.js"
+      }
+    ],
+    "PreInvocation": [
+      {
+        "command": "node .claude/hooks/unity-safety-inject.js"
+      }
+    ]
+  },
+  "mcpServers": {
+    "unity": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "./unity-mcp-server/index.js"
+      ],
+      "description": "Unity MCP Server connection for Unity Editor automation"
+    }
+  }
+}
