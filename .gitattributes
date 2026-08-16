@@ -3,7 +3,11 @@
 # 1. Tự động nhận diện định dạng dòng (End of Line)
 * text=auto
 
-# 2. Định dạng Text & Mã nguồn C#
+# 2. Cố định Line Endings cho Script Cài Đặt
+*.sh text eol=lf
+*.ps1 text eol=crlf
+
+# 3. Định dạng Text & Mã nguồn C#
 *.cs diff=csharp text
 *.cginc text
 *.shader text
@@ -18,7 +22,7 @@
 *.asmref text
 *.editorconfig text
 
-# 3. Unity YAML Serialized Files (Giữ Text để Merge và Diff được)
+# 4. Unity YAML Serialized Files (Giữ Text để Merge và Diff được)
 *.unity text
 *.prefab text
 *.asset text
@@ -34,7 +38,7 @@
 *.mask text
 *.brush text
 
-# 4. Git LFS: Định dạng 3D Models & Animations
+# 5. Git LFS: Định dạng 3D Models & Animations
 *.fbx filter=lfs diff=lfs merge=lfs -text
 *.obj filter=lfs diff=lfs merge=lfs -text
 *.blend filter=lfs diff=lfs merge=lfs -text
@@ -44,7 +48,7 @@
 *.dxf filter=lfs diff=lfs merge=lfs -text
 *.c4d filter=lfs diff=lfs merge=lfs -text
 
-# 5. Git LFS: Định dạng Hình ảnh & Textures nặng
+# 6. Git LFS: Định dạng Hình ảnh & Textures nặng
 *.png filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text
 *.jpeg filter=lfs diff=lfs merge=lfs -text
@@ -56,7 +60,7 @@
 *.hdr filter=lfs diff=lfs merge=lfs -text
 *.cubemap filter=lfs diff=lfs merge=lfs -text
 
-# 6. Git LFS: Định dạng Âm thanh (Audio)
+# 7. Git LFS: Định dạng Âm thanh (Audio)
 *.wav filter=lfs diff=lfs merge=lfs -text
 *.mp3 filter=lfs diff=lfs merge=lfs -text
 *.ogg filter=lfs diff=lfs merge=lfs -text
@@ -64,13 +68,13 @@
 *.aiff filter=lfs diff=lfs merge=lfs -text
 *.flac filter=lfs diff=lfs merge=lfs -text
 
-# 7. Git LFS: Định dạng Video
+# 8. Git LFS: Định dạng Video
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.mov filter=lfs diff=lfs merge=lfs -text
 *.avi filter=lfs diff=lfs merge=lfs -text
 *.webm filter=lfs diff=lfs merge=lfs -text
 
-# 8. Git LFS: Fonts & Binary Archives
+# 9. Git LFS: Fonts & Binary Archives
 *.ttf filter=lfs diff=lfs merge=lfs -text
 *.otf filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
