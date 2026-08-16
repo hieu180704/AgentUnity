@@ -1,0 +1,35 @@
+# Task: Hoàn Thiện Bộ Khung GeminiUnity AI Agent Starter Kit
+# Ngày: 2026-08-16
+# Mục tiêu: Xây dựng toàn diện bộ khung cấu hình, an toàn, automation và code templates cho Gemini AI làm việc với Unity Engine.
+
+# Các công việc đã hoàn thành:
+1. Xây dựng 5 Lifecycle Hooks (.agents/hooks/ & hooks.json):
+   - asset-write-guard.js (PreToolUse - Chặn cứng sửa file YAML/Serialized).
+   - unity-safety-inject.js (PreInvocation - Tiêm 8 bẫy ngầm Unity MCP).
+   - convention-lint-guard.js + lint-conventions.js (PostToolUse - Linter C#).
+   - read-guard.js (PreToolUse - Nhắc targeted read).
+   - closeout-trigger.js (PreToolUse - Nhắc tạo worklog fragment).
+
+2. Xây dựng 11 Architecture Recipes (.agents/recipes/ & 00-recipe-index.md):
+   - manager, ui-panel, event, save-data, scriptableobject, statemachine, tween, pool, constants, unit-test, asmdef.
+
+3. Chuẩn hóa 4 Rules (.agents/rules/):
+   - unity-safety.md (always_on)
+   - knowledge-graph.md (always_on)
+   - code-conventions.md (model_decision)
+   - doc-policy.md (model_decision)
+
+4. Xây dựng 10 Skills (.agents/skills/):
+   - /convention-check, /test-run, /worktree, /move-file-unity, /newsession, /explain, /unity-mcp-guide, /doc, /restructure-script, /system-cleanup.
+
+5. Hệ thống Living Docs & QC Checklists (Docs/):
+   - SourceOfTruth/_TEMPLATE.txt, Decisions/D000__decision-template.txt, Handoffs/handoff.template.txt, QC01, QC02.
+
+6. Hạ tầng & 1-Command Quick Installer:
+   - .editorconfig, .gitignore, .gitattributes (Git LFS).
+   - install.ps1 (Windows), install.sh (macOS/Linux).
+   - Đã đẩy toàn bộ mã nguồn lên GitHub: https://github.com/hieu180704/GeminiUnity.git
+
+# Nhiệm vụ phiên tiếp theo:
+- Xây dựng bộ khung tương ứng `ClaudeUnity` tại `c:\Project\ClaudeUnity` tối ưu hóa riêng cho Claude (Claude Code / Cursor rules).
+- Hướng dẫn mở đa thư mục (Multi-root Workspaces) trên Antigravity IDE.
